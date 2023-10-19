@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Header } from "./Components/Header/Header";
+import { Header } from "./Components/Header";
 import { fetchGet } from "./api/fetchGet";
 import { fetchPost } from "./api/fetchPost";
+import { apiFetch } from "./api/apiFetch";
 
 function App() {
   const [getInput, setGetInput] = useState(0);
@@ -28,27 +29,6 @@ function App() {
   return (
     <>
       <Header />
-      <h1>Hello, World!</h1>
-      <div>
-        <h2>getのテスト</h2>
-        <input
-          type="number"
-          name="number"
-          id="number"
-          onChange={(e) => getHandleChange(e.target.value)}
-        />
-        <button onClick={() => getHandleClick(getInput)}>フェッチget</button>
-      </div>
-      <div>
-        <h2>postのテスト</h2>
-        <input
-          type="number"
-          name="number"
-          id="number"
-          onChange={(e) => postHandleChange(e.target.value)}
-        />
-        <button onClick={() => postHandleClick(postInput)}>フェッチpost</button>
-      </div>
     </>
   );
 }
