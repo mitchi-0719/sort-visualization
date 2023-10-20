@@ -1,7 +1,7 @@
-import ButtonArea from "./components/ButtonArea.jsx";
-import { Header } from "./components/Header.jsx";
-import { Setting } from "./components/Setting.jsx";
-import { SortArea } from "./components/SortArea.jsx";
+import { ButtonArea } from "./components/ButtonArea";
+import { Header } from "./components/Header";
+import { Setting } from "./components/Setting";
+import { SortArea } from "./components/SortArea";
 import { useState } from "react";
 
 function App() {
