@@ -1,4 +1,4 @@
-export const ButtonArea = () => {
+const ButtonArea = () => {
   return (
     <div>
       <button>解説</button>
@@ -8,3 +8,5 @@ export const ButtonArea = () => {
     </div>
   )
 };
+
+export default ButtonArea;

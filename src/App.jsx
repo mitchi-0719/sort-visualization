@@ -1,4 +1,4 @@
-import { ButtonArea } from "./components/ButtonArea.jsx";
+import ButtonArea from "./components/ButtonArea.jsx";
 import { Header } from "./components/Header.jsx";
 import { Setting } from "./components/Setting.jsx";
 import { SortArea } from "./components/SortArea.jsx";
