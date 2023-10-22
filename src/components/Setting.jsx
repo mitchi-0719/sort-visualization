@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import { ArraySetting } from "./ArraySetting";
 import { SortSetting } from "./SortSetting";
 import { useState } from "react";
@@ -8,6 +9,7 @@ export const Setting = (props) => {
 
   return (
     <>
+      <Button onClick={() => setOpen((prev) => !prev)}>設定</Button>
       <button onClick={() => setOpen((prev) => !prev)}>設定</button>
       {open && (
         <div>
