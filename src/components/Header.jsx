@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import styles from "../styles/header.module.css"
+import styles from "../styles/Header.module.css"
 
 export const Header = () => {
   return (

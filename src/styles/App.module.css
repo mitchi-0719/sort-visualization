@@ -1,0 +1,9 @@
+@charset "utf-8";
+
+.main {
+  display: flex;
+}
+
+.btn {
+  height: 36.5px;
+}

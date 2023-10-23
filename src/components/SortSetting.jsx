@@ -19,7 +19,7 @@ export const SortSetting = ({sortType, setSortType, order, setOrder}) => {
   return (
     <>
       <div>
-        <h2>ソート種別</h2>
+        <h3>ソート種別</h3>
         <Select
           options={options}
           isMulti={false}
@@ -27,7 +27,7 @@ export const SortSetting = ({sortType, setSortType, order, setOrder}) => {
         />
       </div>
       <div>
-        <h2>昇順・降順</h2>
+        <h3>昇順・降順</h3>
         {radioValues.map((val) => (
           <label key={val.value}>
             <input
