@@ -1,8 +1,11 @@
+import { Button } from "@mui/material";
+import styles from "../styles/header.module.css"
+
 export const Header = () => {
   return (
-    <header>
+    <header className={styles.header}>
       <h1>My React App</h1>
-      <button>使い方</button>
+      <Button variant="contained">使い方</Button>
     </header>
   );
 }
