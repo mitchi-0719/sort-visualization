@@ -10,13 +10,12 @@ function App() {
   const [sortType, setSortType] = useState("bubble");
   const [order, setOrder] = useState("asc");
   const [array, setArray] = useState([...Array(10)]);
-  const [open, setOpen] = useState(false);
 
   return (
     <>
       <Header />
 
-      <div className={styles.main}>
+      <div className={styles.setting}>
         <Setting
           sortType={sortType}
           setSortType={setSortType}
