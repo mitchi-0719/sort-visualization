@@ -1,7 +1,7 @@
 import Select from "react-select";
+import styles from "../styles/SortSetting.module.css"
 
-export const SortSetting = ({sortType, setSortType, order, setOrder}) => {
-
+export const SortSetting = ({ sortType, setSortType, order, setOrder }) => {
   const options = [
     { value: "bubble", label: "Bubble sort (交換ソート)" },
     { value: "selection", label: "Selection sort (選択ソート)" },
@@ -18,9 +18,10 @@ export const SortSetting = ({sortType, setSortType, order, setOrder}) => {
 
   return (
     <>
-      <div>
+      <div className={styles.select}>
         <h3>ソート種別</h3>
         <Select
+          defaultValue={{ value: "bubble", label: "Bubble sort (交換ソート)" }}
           options={options}
           isMulti={false}
           onChange={(e) => setSortType(e.value)}
