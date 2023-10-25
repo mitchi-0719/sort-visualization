@@ -1,5 +1,5 @@
 import Select from "react-select";
-import styles from "../styles/SortSetting.module.css"
+import styles from "../styles/SortSetting.module.css";
 
 export const SortSetting = ({ sortType, setSortType, order, setOrder }) => {
   const options = [
@@ -26,8 +26,6 @@ export const SortSetting = ({ sortType, setSortType, order, setOrder }) => {
           isMulti={false}
           onChange={(e) => setSortType(e.value)}
         />
-      </div>
-      <div>
         <h3>昇順・降順</h3>
         {radioValues.map((val) => (
           <label key={val.value}>

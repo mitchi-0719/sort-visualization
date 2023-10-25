@@ -3,5 +3,10 @@
 .buttons {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
+  padding: 64px 0;
+}
+
+.buttons * {
+  margin: 0.5rem;
 }
