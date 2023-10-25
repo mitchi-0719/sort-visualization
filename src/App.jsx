@@ -9,7 +9,7 @@ import styles from "./styles/App.module.css";
 function App() {
   const [sortType, setSortType] = useState("bubble");
   const [order, setOrder] = useState("asc");
-  const [array, setArray] = useState([...Array(10)]);
+  const [array, setArray] = useState([...Array(10)].map((_, i) => i));
 
   return (
     <>

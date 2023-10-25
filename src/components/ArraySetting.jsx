@@ -1,10 +1,16 @@
-import styles from "../styles/ArraySetting.module.css"
+import styles from "../styles/ArraySetting.module.css";
 import { Button } from "@mui/material";
+import { useEffect } from "react";
+import { getRandArr } from "../fearture/getRandArr";
 
 export const ArraySetting = ({ array, setArray }) => {
   const handleChange = (n, i) => {
     setArray(array.map((value, index) => (index === i ? n : value)));
   };
+
+  useEffect(() => {
+    console.log(array);
+  }, [array]);
 
   return (
     <>
@@ -27,9 +33,15 @@ export const ArraySetting = ({ array, setArray }) => {
       </div>
 
       <div className={styles.buttons}>
-        <Button variant="contained">ランダム配列生成</Button>
-        <Button variant="contained">ランダム昇順生成</Button>
-        <Button variant="contained">ランダム降順生成</Button>
+        <Button variant="contained" onClick={() => getRandArr(0, setArray)}>
+          ランダム配列生成
+        </Button>
+        <Button variant="contained" onClick={() => getRandArr(-1, setArray)}>
+          ランダム昇順生成
+        </Button>
+        <Button variant="contained" onClick={() => getRandArr(1, setArray)}>
+          ランダム降順生成
+        </Button>
       </div>
     </>
   );
