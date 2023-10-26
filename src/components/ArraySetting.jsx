@@ -1,7 +1,7 @@
 import styles from "../styles/ArraySetting.module.css";
 import { Button } from "@mui/material";
 import { useEffect } from "react";
-import { getRandArr } from "../fearture/getRandArr";
+import { getRandArr } from "../feature/getRandArr";
 
 export const ArraySetting = ({ array, setArray }) => {
   const handleChange = (n, i) => {
