@@ -1,6 +1,5 @@
 import styles from "../styles/ArraySetting.module.css";
 import { Button } from "@mui/material";
-import { useEffect } from "react";
 import { getRandArr } from "../feature/getRandArr";
 
 export const ArraySetting = ({ array, setArray }) => {
@@ -8,18 +7,13 @@ export const ArraySetting = ({ array, setArray }) => {
     setArray(array.map((value, index) => (index === i ? n : value)));
   };
 
-  useEffect(() => {
-    console.log(array);
-  }, [array]);
-
   return (
     <>
       <div>
         <h3>配列設定</h3>
         <div>
           {array.map((value, index) => (
-            <div key={index}>
-              <label>{index} </label>
+            <div key={index} className={styles.inputLabel}>
               <input
                 type="number"
                 id={index}
@@ -27,6 +21,7 @@ export const ArraySetting = ({ array, setArray }) => {
                 value={value}
                 onChange={(e) => handleChange(e.target.value, index)}
               />
+              <label>{index} </label>
             </div>
           ))}
         </div>

@@ -1,7 +1,9 @@
+import { ArrayInput } from "./sort/ArrayInput";
+
 export const SortArea = () => {
-  return(
+  return (
     <>
-      ソートを表示する場所
+      <ArrayInput />
     </>
   );
 };

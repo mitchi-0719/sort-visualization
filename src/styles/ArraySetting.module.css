@@ -10,3 +10,16 @@
 .buttons * {
   margin: 0.5rem;
 }
+
+.inputArea {
+
+}
+
+.inputLabel {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  
+}
