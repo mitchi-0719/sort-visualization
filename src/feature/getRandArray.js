@@ -1,7 +1,7 @@
-export const getRandArr = (type, setArray) => {
+export const getRandArray = (type, setArray) => {
   const arr = [];
-  const min = 0;
-  const max = 100;
+  const min = -10;
+  const max = 10;
   for (let i = 0; i < 10; i++) {
     arr.push(Math.floor(Math.random() * (max - min + 1) + min));
   }
@@ -10,10 +10,11 @@ export const getRandArr = (type, setArray) => {
   if (type === -1) {
     arr.sort((a, b) => a - b);
 
-  // 昇順
+    // 昇順
   } else if (type === 1) {
     arr.sort((a, b) => b - a);
   }
 
+  console.log(arr);
   setArray(arr);
 };

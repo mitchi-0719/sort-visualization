@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background-color: skyblue;
+  padding: 4px 0;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.footer p {
+  margin: 0;
+}
