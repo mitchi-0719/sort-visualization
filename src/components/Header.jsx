@@ -5,6 +5,7 @@ export const Header = () => {
     <Box
       display="flex"
       justifyContent="space-between"
+      flex={1}
       p="1%"
       bgcolor="rgb(154, 213, 236)"
     >

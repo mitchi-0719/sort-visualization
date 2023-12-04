@@ -10,21 +10,13 @@ export const Main = () => {
   const [order, setOrder] = useState("asc");
 
   return (
-    <Box display="flex">
-      <Box
-        flex={2}
-        border={3}
-        borderColor="#0070ff"
-        borderRadius="0 10px 10px 0"
-        sx={{ background: "#fff", p: 1 }}
-      >
-        <Setting
-          setSortType={setSortType}
-          order={order}
-          setOrder={setOrder}
-          setArray={setArray}
-        />
-      </Box>
+    <Box display="flex" flex={8}>
+      <Setting
+        setSortType={setSortType}
+        order={order}
+        setOrder={setOrder}
+        setArray={setArray}
+      />
       <Box flex={8}>
         <ArrayInput array={array} setArray={setArray} />
         <ButtonArea />

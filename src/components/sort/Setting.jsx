@@ -25,7 +25,14 @@ export const Setting = ({ setSortType, order, setOrder, setArray }) => {
   ];
 
   return (
-    <>
+    <Box
+      flex={2}
+      border={3}
+      borderColor="#0070ff"
+      borderRadius="0 10px 10px 0"
+      gap={1}
+      sx={{ background: "#fff", p: 1 }}
+    >
       <Select
         defaultValue={{ value: "bubble", label: "Bubble sort (交換ソート)" }}
         options={options}
@@ -49,7 +56,7 @@ export const Setting = ({ setSortType, order, setOrder, setArray }) => {
         </RadioGroup>
       </FormControl>
 
-      <Box>
+      <Box columnGap={1}>
         <Button variant="contained" onClick={() => getRandArray(0, setArray)}>
           ランダム配列生成
         </Button>
@@ -60,6 +67,6 @@ export const Setting = ({ setSortType, order, setOrder, setArray }) => {
           ランダム降順生成
         </Button>
       </Box>
-    </>
+    </Box>
   );
 };

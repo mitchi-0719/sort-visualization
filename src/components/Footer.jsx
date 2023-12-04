@@ -6,6 +6,7 @@ export const Footer = () => {
       display="flex"
       flexDirection="column"
       justifyContent="center"
+      flex={1}
       textAlign="center"
       bgcolor="skyblue"
       padding="4px 0"
