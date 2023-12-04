@@ -1,13 +1,12 @@
 import { Box, Button } from "@mui/material";
 import { PlayCircle } from "@mui/icons-material/";
-import styles from "../../styles/ButtonArea.module.css";
 
 export const ButtonArea = () => {
   return (
-    <Box className={styles.container}>
+    <Box display="flex" justifyContent="space-around">
       <Button variant="contained">解説</Button>
       <Button variant="contained">
-        <PlayCircle className={styles.reverse} />
+        <PlayCircle sx={{transform: "scale(-1, 1)"}}/>
         戻る
       </Button>
       <Button variant="contained">
