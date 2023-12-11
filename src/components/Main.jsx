@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { ArrayInput } from "./sort/ArrayInput";
-import { ButtonArea } from "./sort/SortButton";
 import { Box } from "@mui/material";
-import { Setting } from "./sort/Setting";
+import { Setting } from "./Setting/Setting";
+import { Sort } from "./sort/Sort";
 
 export const Main = () => {
   const [array, setArray] = useState([...Array(10)].map((_, i) => i));
@@ -17,10 +16,7 @@ export const Main = () => {
         setOrder={setOrder}
         setArray={setArray}
       />
-      <Box flex={8}>
-        <ArrayInput array={array} setArray={setArray} />
-        <ButtonArea />
-      </Box>
+      <Sort array={array} setArray={setArray} />
     </Box>
   );
 };
