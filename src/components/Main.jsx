@@ -9,7 +9,7 @@ export const Main = () => {
   const [order, setOrder] = useState("asc");
 
   return (
-    <Box display="flex" flex={8}>
+    <Box display="flex" height="80vh">
       <Setting
         setSortType={setSortType}
         order={order}

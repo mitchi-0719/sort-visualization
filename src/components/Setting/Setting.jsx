@@ -36,7 +36,7 @@ export const Setting = ({ setSortType, order, setOrder, setArray }) => {
       display="flex"
       flexDirection="column"
       justifyContent="space-around"
-      flex={2}
+      width="20vw"
       border={3}
       borderColor="#0070ff"
       // borderRadius="0 10px 10px 0"
