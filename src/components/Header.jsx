@@ -10,7 +10,7 @@ export const Header = () => {
       bgcolor="rgb(154, 213, 236)"
     >
       <h1 style={{margin: 0}}>Sort-visualization</h1>
-      <Button variant="contained">使い方</Button>
+      {/* <Button variant="contained">使い方</Button> */}
     </Box>
   );
 };

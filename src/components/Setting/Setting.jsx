@@ -10,7 +10,7 @@ import {
 import Select from "react-select";
 import { getRandArray } from "../../feature/getRandArray";
 
-export const Setting = ({ setSortType, order, setOrder, setArray }) => {
+export const Setting = ({ setSortType, order, setOrder, setArray, isRunning }) => {
   const options = [
     { value: "bubble", label: "Bubble sort (交換ソート)" },
     // { value: "selection", label: "Selection sort (選択ソート)" },
@@ -39,7 +39,6 @@ export const Setting = ({ setSortType, order, setOrder, setArray }) => {
       width="20vw"
       border={3}
       borderColor="#0070ff"
-      // borderRadius="0 10px 10px 0"
       rowGap={1}
       sx={{ background: "#fff", p: 1 }}
     >
@@ -49,6 +48,7 @@ export const Setting = ({ setSortType, order, setOrder, setArray }) => {
         options={options}
         isMulti={false}
         onChange={(e) => setSortType(e.value)}
+        isDisabled={isRunning}
       />
       {/* <TextField
         type="number"
@@ -68,6 +68,7 @@ export const Setting = ({ setSortType, order, setOrder, setArray }) => {
                 label={val.label}
                 onChange={(e) => setOrder(e.target.value)}
                 checked={order === val.value}
+                disabled={isRunning}
               />
             );
           })}
@@ -75,13 +76,13 @@ export const Setting = ({ setSortType, order, setOrder, setArray }) => {
       </FormControl>
 
       <Box rowGap={1} display="flex" flexDirection="column">
-        <Button variant="contained" onClick={() => getRandArray(0, setArray)}>
+        <Button variant="contained" disabled={isRunning} onClick={() => getRandArray(0, setArray)}>
           ランダム配列生成
         </Button>
-        <Button variant="contained" onClick={() => getRandArray(-1, setArray)}>
+        <Button variant="contained" disabled={isRunning} onClick={() => getRandArray(-1, setArray)}>
           ランダム昇順生成
         </Button>
-        <Button variant="contained" onClick={() => getRandArray(1, setArray)}>
+        <Button variant="contained" disabled={isRunning} onClick={() => getRandArray(1, setArray)}>
           ランダム降順生成
         </Button>
       </Box>
