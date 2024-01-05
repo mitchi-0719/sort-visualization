@@ -6,31 +6,44 @@ export const SortButton = ({
   sortType,
   isAsc,
   array,
-  setIsLoading,
+  isRunning,
+  setIsRunning,
+  sortIndex,
+  setSortIndex,
+  sortDataLength,
   setSortData,
 }) => {
   const handleFetch = async () => {
-    setIsLoading(true);
     const res = await apiFetch(sortType, isAsc, array);
-    setSortData(res);
-    setIsLoading(false);
+    setSortData(res.API_Response.sort_log.log.logs);
+    setIsRunning(true);
   };
 
   return (
     <Box display="flex" justifyContent="space-around">
       {/* <Button variant="contained">解説</Button> */}
-      <Button variant="contained" onClick={handleFetch}>
+      <Button variant="contained" onClick={handleFetch} disabled={isRunning}>
         スタート
       </Button>
-      <Button variant="contained">
+      <Button
+        variant="contained"
+        disabled={sortIndex === 0 || !isRunning}
+        onClick={() => setSortIndex((prev) => prev - 1)}
+      >
         <PlayCircle sx={{ transform: "scale(-1, 1)" }} />
         戻る
       </Button>
-      <Button variant="contained">
+      <Button
+        variant="contained"
+        disabled={sortIndex === sortDataLength - 1 || !isRunning}
+        onClick={() => setSortIndex((prev) => prev + 1)}
+      >
         進む
         <PlayCircle />
       </Button>
-      <Button variant="contained">リセット</Button>
+      <Button variant="contained" disabled={!isRunning}>
+        リセット
+      </Button>
     </Box>
   );
 };

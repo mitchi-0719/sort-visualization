@@ -7,7 +7,11 @@ export const Sort = ({
   setArray,
   sortType,
   order,
-  setIsLoading,
+  isRunning,
+  setIsRunning,
+  sortDataLength,
+  sortIndex,
+  setSortIndex,
   setSortData,
 }) => {
   return (
@@ -18,7 +22,11 @@ export const Sort = ({
           sortType={sortType}
           isAsc={order === "asc"}
           array={array}
-          setIsLoading={setIsLoading}
+          sortIndex={sortIndex}
+          setSortIndex={setSortIndex}
+          isRunning={isRunning}
+          setIsRunning={setIsRunning}
+          sortDataLength={sortDataLength}
           setSortData={setSortData}
         />
       </Box>

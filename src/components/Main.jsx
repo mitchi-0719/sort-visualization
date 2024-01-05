@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Box } from "@mui/material";
 import { Setting } from "../common/Setting";
 import { Sort } from "../common/Sort";
@@ -8,7 +8,8 @@ export const Main = () => {
   const [sortType, setSortType] = useState("bubble");
   const [order, setOrder] = useState("asc");
   const [isRunning, setIsRunning] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+
+  const [sortIndex, setSortIndex] = useState(0);
 
   const [sortData, setSortData] = useState([]);
 
@@ -26,7 +27,11 @@ export const Main = () => {
         setArray={setArray}
         sortType={sortType}
         order={order}
-        setIsLoading={setIsLoading}
+        sortIndex={sortIndex}
+        setSortIndex={setSortIndex}
+        isRunning={isRunning}
+        setIsRunning={setIsRunning}
+        sortDataLength={isRunning ? sortData.length : 0}
         setSortData={setSortData}
       />
     </Box>
