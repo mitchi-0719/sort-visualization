@@ -8,9 +8,15 @@ import {
   Typography,
 } from "@mui/material";
 import Select from "react-select";
-import { getRandArray } from "../../feature/getRandArray";
+import { getRandArray } from "../feature/getRandArray";
 
-export const Setting = ({ setSortType, order, setOrder, setArray, isRunning }) => {
+export const Setting = ({
+  setSortType,
+  order,
+  setOrder,
+  setArray,
+  isRunning,
+}) => {
   const options = [
     { value: "bubble", label: "Bubble sort (交換ソート)" },
     // { value: "selection", label: "Selection sort (選択ソート)" },
@@ -76,13 +82,25 @@ export const Setting = ({ setSortType, order, setOrder, setArray, isRunning }) =
       </FormControl>
 
       <Box rowGap={1} display="flex" flexDirection="column">
-        <Button variant="contained" disabled={isRunning} onClick={() => getRandArray(0, setArray)}>
+        <Button
+          variant="contained"
+          disabled={isRunning}
+          onClick={() => getRandArray(0, setArray)}
+        >
           ランダム配列生成
         </Button>
-        <Button variant="contained" disabled={isRunning} onClick={() => getRandArray(-1, setArray)}>
+        <Button
+          variant="contained"
+          disabled={isRunning}
+          onClick={() => getRandArray(-1, setArray)}
+        >
           ランダム昇順生成
         </Button>
-        <Button variant="contained" disabled={isRunning} onClick={() => getRandArray(1, setArray)}>
+        <Button
+          variant="contained"
+          disabled={isRunning}
+          onClick={() => getRandArray(1, setArray)}
+        >
           ランダム降順生成
         </Button>
       </Box>

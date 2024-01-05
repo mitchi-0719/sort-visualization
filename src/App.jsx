@@ -1,6 +1,6 @@
-import { Header } from "./components/Header";
+import { Header } from "./common/Header";
 import { Main } from "./components/Main";
-import { Footer } from "./components/Footer";
+import { Footer } from "./common/Footer";
 import { Box } from "@mui/material";
 
 function App() {

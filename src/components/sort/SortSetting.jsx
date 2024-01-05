@@ -3,7 +3,7 @@ import { generatePaleColors } from "../../feature/generatePaleColors";
 import { useWindowSize } from "../../feature/useWindowSize";
 import { useEffect, useState } from "react";
 
-export const SortArea = ({ array, setArray }) => {
+export const SortSetting = ({ array, setArray }) => {
   const paleColors = generatePaleColors(array.length);
   const [width, height] = useWindowSize();
   const [coordinates, setCoordinates] = useState(
