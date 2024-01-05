@@ -8,11 +8,9 @@ export const Main = () => {
   const [sortType, setSortType] = useState("bubble");
   const [order, setOrder] = useState("asc");
   const [isRunning, setIsRunning] = useState(false);
-  const [sortData, setSortData] = useState([]);
+  const [isLoading , setIsLoading] = useState(false);
 
-  useEffect(() => {
-    console.log(sortData);
-  }, [sortData]);
+  const [sortData, setSortData] = useState([]);
 
   return (
     <Box display="flex" height="80vh">
@@ -28,6 +26,7 @@ export const Main = () => {
         setArray={setArray}
         sortType={sortType}
         order={order}
+        setIsLoading={setIsLoading}
         setSortData={setSortData}
       />
     </Box>

@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import { SortArea } from "./SortArea";
 import { SortButton } from "./SortButton";
 
-export const Sort = ({ array, setArray, sortType, order, setSortData }) => {
+export const Sort = ({ array, setArray, sortType, order, setIsLoading, setSortData }) => {
   return (
     <Box width="80vw" display="flex" flexDirection="column">
       <SortArea array={array} setArray={setArray} />
@@ -11,6 +11,7 @@ export const Sort = ({ array, setArray, sortType, order, setSortData }) => {
           sortType={sortType}
           isAsc={order === "asc"}
           array={array}
+          setIsLoading={setIsLoading}
           setSortData={setSortData}
         />
       </Box>

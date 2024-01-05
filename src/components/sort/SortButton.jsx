@@ -2,14 +2,24 @@ import { Box, Button } from "@mui/material";
 import { PlayCircle } from "@mui/icons-material/";
 import { apiFetch } from "../../api/apiFetch";
 
-export const SortButton = ({ sortType, isAsc, array, setSortData }) => {
+export const SortButton = ({
+  sortType,
+  isAsc,
+  array,
+  setIsLoading,
+  setSortData,
+}) => {
+  const handleFetch = async () => {
+    setIsLoading(true);
+    const res = await apiFetch(sortType, isAsc, array);
+    setSortData(res);
+    setIsLoading(false);
+  };
+
   return (
     <Box display="flex" justifyContent="space-around">
       {/* <Button variant="contained">解説</Button> */}
-      <Button
-        variant="contained"
-        onClick={() => setSortData(apiFetch(sortType, isAsc, array))}
-      >
+      <Button variant="contained" onClick={handleFetch}>
         スタート
       </Button>
       <Button variant="contained">
