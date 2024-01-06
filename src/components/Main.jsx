@@ -9,10 +9,6 @@ export const Main = () => {
   const [order, setOrder] = useState("asc");
   const [isRunning, setIsRunning] = useState(false);
 
-  const [sortIndex, setSortIndex] = useState(0);
-
-  const [sortData, setSortData] = useState([]);
-
   return (
     <Box display="flex" height="80vh">
       <Setting
@@ -24,15 +20,10 @@ export const Main = () => {
       />
       <Sort
         array={array}
-        setArray={setArray}
         sortType={sortType}
         order={order}
-        sortIndex={sortIndex}
-        setSortIndex={setSortIndex}
         isRunning={isRunning}
         setIsRunning={setIsRunning}
-        sortDataLength={isRunning ? sortData.length : 0}
-        setSortData={setSortData}
       />
     </Box>
   );
