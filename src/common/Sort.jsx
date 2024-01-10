@@ -5,14 +5,10 @@ import { generatePaleColors } from "../feature/generatePaleColors";
 import { useWindowSize } from "../feature/useWindowSize";
 import { useEffect, useState } from "react";
 import { calcCoordinates } from "../feature/calcCoordinates";
+import { ErrorPage } from "./ErrorPage";
+import { BubbleSort } from "../components/sort/BubbleSort";
 
-export const Sort = ({
-  array,
-  sortType,
-  order,
-  isRunning,
-  setIsRunning,
-}) => {
+export const Sort = ({ array, sortType, order, isRunning, setIsRunning }) => {
   const paleColors = generatePaleColors(array.length);
   const [width, height] = useWindowSize();
   const [coordinates, setCoordinates] = useState(
@@ -27,13 +23,30 @@ export const Sort = ({
 
   return (
     <Box width="80vw" display="flex" flexDirection="column">
-      <SortSetting
-        array={array}
-        paleColors={paleColors}
-        width={width}
-        height={height}
-        coordinates={coordinates}
-      />
+      <Box height="90%">
+        {!isRunning ? (
+          <SortSetting
+            array={array}
+            paleColors={paleColors}
+            coordinates={coordinates}
+          />
+        ) : (
+          <>
+            {sortType === "bubble" ? (
+              <BubbleSort
+                array={array}
+                paleColors={paleColors}
+                index={sortIndex}
+                coordinates={coordinates}
+                setCoordinates={setCoordinates}
+                sortData={sortData}
+              />
+            ) : (
+              <ErrorPage />
+            )}
+          </>
+        )}
+      </Box>
       <Box height="10%">
         <SortButton
           sortType={sortType}
