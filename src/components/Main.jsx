@@ -20,6 +20,7 @@ export const Main = () => {
       />
       <Sort
         array={array}
+        setArray={setArray}
         sortType={sortType}
         order={order}
         isRunning={isRunning}

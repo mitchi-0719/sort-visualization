@@ -1,10 +1,31 @@
+import { useState } from "react";
 import {
   RECT_HEIGHT,
   RECT_WIDTH,
   STRIKING_RECT_WIDTH,
 } from "../../constants/blockConst";
+import { ChangeDialog } from "../../common/ChangeDialog";
 
-export const SortBlock = ({ x, y, color, isStriking, value }) => {
+export const SortBlock = ({
+  x,
+  y,
+  color,
+  isStriking,
+  value,
+  setArray,
+  idx,
+  running,
+}) => {
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  const handleOpen = () => {
+    setDialogOpen(true);
+  };
+
+  const handleClose = () => {
+    setDialogOpen(false);
+  };
+
   return (
     <g>
       {isStriking && (
@@ -23,6 +44,7 @@ export const SortBlock = ({ x, y, color, isStriking, value }) => {
         x={x}
         y={y}
         stroke="#666"
+        onClick={handleOpen}
       />
       <text
         x={x + RECT_WIDTH / 2}
@@ -34,6 +56,15 @@ export const SortBlock = ({ x, y, color, isStriking, value }) => {
       >
         {value}
       </text>
+      {!running && (
+        <ChangeDialog
+          value={value}
+          dialogOpen={dialogOpen}
+          handleClose={handleClose}
+          idx={idx}
+          setArray={setArray}
+        />
+      )}
     </g>
   );
 };

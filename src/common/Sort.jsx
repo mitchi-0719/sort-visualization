@@ -8,7 +8,14 @@ import { calcCoordinates } from "../feature/calcCoordinates";
 import { ErrorPage } from "./ErrorPage";
 import { BubbleSort } from "../components/sort/BubbleSort";
 
-export const Sort = ({ array, sortType, order, isRunning, setIsRunning }) => {
+export const Sort = ({
+  array,
+  setArray,
+  sortType,
+  order,
+  isRunning,
+  setIsRunning,
+}) => {
   const paleColors = generatePaleColors(array.length);
   const [width, height] = useWindowSize();
   const [coordinates, setCoordinates] = useState(
@@ -27,6 +34,7 @@ export const Sort = ({ array, sortType, order, isRunning, setIsRunning }) => {
         {!isRunning ? (
           <SortSetting
             array={array}
+            setArray={setArray}
             paleColors={paleColors}
             coordinates={coordinates}
           />

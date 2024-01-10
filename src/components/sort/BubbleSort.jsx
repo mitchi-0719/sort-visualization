@@ -41,10 +41,11 @@ export const BubbleSort = ({
             idx === coordinateIndex[sortData[index].index2]
           }
           value={value}
+          running={true}
         />
       ));
     });
-  }, [index, coordinates]);
+  }, [index]);
 
   return (
     <svg width="80vw" height="70vh">
