@@ -19,6 +19,12 @@ export const SortButton = ({
     setIsRunning(true);
   };
 
+  const handleReset = () => {
+    setSortIndex(0);
+    setIsRunning(false);
+    setSortData([]);
+  };
+
   return (
     <Box display="flex" justifyContent="space-around">
       {/* <Button variant="contained">解説</Button> */}
@@ -41,8 +47,8 @@ export const SortButton = ({
         進む
         <PlayCircle />
       </Button>
-      <Button variant="contained" disabled={!isRunning}>
-        リセット
+      <Button variant="contained" disabled={!isRunning} onClick={handleReset}>
+        終了
       </Button>
     </Box>
   );

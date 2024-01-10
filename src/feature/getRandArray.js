@@ -14,7 +14,6 @@ export const getRandArray = (type, setArray) => {
   } else if (type === 1) {
     arr.sort((a, b) => b - a);
   }
-
   console.log(arr);
   setArray(arr);
 };
