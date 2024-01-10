@@ -35,8 +35,9 @@ export const Sort = ({ array, sortType, order, isRunning, setIsRunning }) => {
             {sortType === "bubble" ? (
               <BubbleSort
                 array={array}
-                paleColors={paleColors}
                 index={sortIndex}
+                paleColors={paleColors}
+                sortIndex={sortIndex}
                 coordinates={coordinates}
                 setCoordinates={setCoordinates}
                 sortData={sortData}

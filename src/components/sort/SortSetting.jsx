@@ -1,4 +1,4 @@
-import { RECT_HEIGHT, RECT_WIDTH } from "../../constants/block_const";
+import { RECT_HEIGHT, RECT_WIDTH } from "../../constants/blockConst";
 
 export const SortSetting = ({ array, paleColors, coordinates }) => {
   return (

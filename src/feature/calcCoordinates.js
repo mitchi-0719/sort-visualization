@@ -1,4 +1,4 @@
-import { RECT_WIDTH, RECT_HEIGHT } from "../constants/block_const";
+import { RECT_WIDTH, RECT_HEIGHT } from "../constants/blockConst";
 
 export const calcCoordinates = (length, width, height) => {
   const areaWidth = width * 0.8;
