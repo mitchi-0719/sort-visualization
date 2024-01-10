@@ -16,6 +16,33 @@ export const swap = (
   newCoordinateIndex[i1] = newCoordinateIndex[i2];
   newCoordinateIndex[i2] = temp;
 
-  setCoordinateIndex(newCoordinateIndex);
-  setCoordinates(newCoordinates);
+  const duration = 300;
+  const startTime = performance.now();
+
+  const animate = (timestamp) => {
+    const progress = (timestamp - startTime) / duration;
+
+    if (progress < 1) {
+      const intermediateCoordinates = newCoordinates.map((coord, idx) => {
+        const startX = coordinates[idx].x;
+        const startY = coordinates[idx].y;
+        const endX = coord.x;
+        const endY = coord.y;
+
+        const currentX = startX + progress * (endX - startX);
+        const currentY = startY + progress * (endY - startY);
+
+        return { x: currentX, y: currentY };
+      });
+
+      setCoordinates(intermediateCoordinates);
+
+      requestAnimationFrame(animate);
+    } else {
+      setCoordinates(newCoordinates);
+      setCoordinateIndex(newCoordinateIndex);
+    }
+  };
+
+  requestAnimationFrame(animate);
 };
