@@ -24,10 +24,6 @@ export const SortBlock = ({
     setDialogOpen(true);
   };
 
-  const handleClose = () => {
-    setDialogOpen(false);
-  };
-
   return (
     <g>
       {isStriking && (
@@ -62,7 +58,7 @@ export const SortBlock = ({
         <ChangeDialog
           value={value}
           dialogOpen={dialogOpen}
-          handleClose={handleClose}
+          setDialogOpen={setDialogOpen}
           idx={idx}
           setArray={setArray}
         />

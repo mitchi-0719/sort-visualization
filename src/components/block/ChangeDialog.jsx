@@ -5,20 +5,25 @@ import {
   DialogContent,
   TextField,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const ChangeDialog = ({
   value,
   dialogOpen,
-  handleClose,
+  setDialogOpen,
   idx,
   setArray,
 }) => {
   const [inputValue, setInputValue] = useState(value);
 
+  useEffect(() => {
+    console.log("value", value);
+    setInputValue(value);
+  }, [value]);
+
   const handleChange = (e) => {
     const val = e.target.value;
-    0 <= val && val <= 30 && setInputValue(val);
+    val != "" && 0 <= val && val <= 30 && setInputValue(Number(val));
   };
 
   const handleDone = () => {
@@ -36,16 +41,20 @@ export const ChangeDialog = ({
     }
   };
 
+  const handleClose = () => {
+    setDialogOpen(false);
+  };
+
   return (
     <Dialog open={dialogOpen} onClose={handleClose} onKeyDown={handleKeyDown}>
       <DialogContent>
         <TextField
           type="number"
           inputProps={{
-            min: -30,
+            min: 0,
             max: 30,
           }}
-          value={inputValue}
+          defaultValue={value}
           onChange={handleChange}
           variant="standard"
         />
