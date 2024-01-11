@@ -6,12 +6,14 @@ export const SortButton = ({
   sortType,
   isAsc,
   array,
+  setArray,
   isRunning,
   setIsRunning,
   sortIndex,
   setSortIndex,
   sortDataLength,
   setSortData,
+  setCoordinateIndex,
 }) => {
   const handleFetch = async () => {
     const res = await apiFetch(sortType, isAsc, array);
@@ -20,7 +22,13 @@ export const SortButton = ({
   };
 
   const handleReset = () => {
-    alert("終了ボタンは未実装です。\nページをリロードしてください。");
+    setIsRunning(false);
+    setSortIndex(0);
+    setArray([...Array(10)].map((_, i) => i));
+    setSortData([]);
+    setCoordinateIndex(
+      Array.from({ length: array.length }, (_, index) => index)
+    );
   };
 
   return (
@@ -30,8 +38,7 @@ export const SortButton = ({
       </Button>
       <Button
         variant="contained"
-        // disabled={sortIndex === 0 || !isRunning}
-        disabled
+        disabled={sortIndex === 0 || !isRunning}
         onClick={() => setSortIndex((prev) => prev - 1)}
       >
         <PlayCircle sx={{ transform: "scale(-1, 1)" }} />

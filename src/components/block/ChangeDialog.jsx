@@ -17,7 +17,6 @@ export const ChangeDialog = ({
   const [inputValue, setInputValue] = useState(value);
 
   useEffect(() => {
-    console.log("value", value);
     setInputValue(value);
   }, [value]);
 
