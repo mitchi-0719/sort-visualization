@@ -32,15 +32,15 @@ export const SortBlock = ({
           height={STRIKING_RECT_HEIGHT}
           fill={STRIKING_RECT_COLOR}
           x={x - 7}
-          y={y - 203}
+          y={y - 250}
         />
       )}
       <rect
         width={RECT_WIDTH}
-        height={RECT_HEIGHT + value * 7}
+        height={RECT_HEIGHT + value * 8}
         fill={color}
         x={x}
-        y={y - value * 7}
+        y={y - value * 8}
         stroke="#666"
         onClick={handleOpen}
       />
