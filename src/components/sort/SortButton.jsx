@@ -20,35 +20,33 @@ export const SortButton = ({
   };
 
   const handleReset = () => {
-    setSortIndex(0);
-    setIsRunning(false);
-    setSortData([]);
+    alert("終了ボタンは未実装です。\nページをリロードしてください。");
   };
 
   return (
     <Box display="flex" justifyContent="space-around">
-      {/* <Button variant="contained">解説</Button> */}
       <Button variant="contained" onClick={handleFetch} disabled={isRunning}>
-        スタート
+        Start
       </Button>
       <Button
         variant="contained"
-        disabled={sortIndex === 0 || !isRunning}
+        // disabled={sortIndex === 0 || !isRunning}
+        disabled
         onClick={() => setSortIndex((prev) => prev - 1)}
       >
         <PlayCircle sx={{ transform: "scale(-1, 1)" }} />
-        戻る
+        Prev
       </Button>
       <Button
         variant="contained"
         disabled={sortIndex === sortDataLength - 1 || !isRunning}
         onClick={() => setSortIndex((prev) => prev + 1)}
       >
-        進む
+        Next
         <PlayCircle />
       </Button>
       <Button variant="contained" disabled={!isRunning} onClick={handleReset}>
-        終了
+        End
       </Button>
     </Box>
   );
