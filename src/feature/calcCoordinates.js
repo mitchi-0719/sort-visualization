@@ -4,7 +4,7 @@ export const calcCoordinates = (length, width, height) => {
   const areaWidth = width * 0.8;
   const areaHeight = height * 0.7;
   const verticalSpacing = 20;
-  const topMargin = areaHeight / 2 - RECT_HEIGHT / 2;
+  const topMargin = areaHeight / 4 * 3 - RECT_HEIGHT / 2;
   const leftMargin = (areaWidth - length * (RECT_WIDTH + verticalSpacing)) / 2;
 
   const coordinatesArray = [];

@@ -2,9 +2,11 @@ import { useState } from "react";
 import {
   RECT_HEIGHT,
   RECT_WIDTH,
+  STRIKING_RECT_HEIGHT,
   STRIKING_RECT_WIDTH,
 } from "../../constants/blockConst";
-import { ChangeDialog } from "../../common/ChangeDialog";
+import { ChangeDialog } from "./ChangeDialog";
+import { STRIKING_RECT_COLOR } from "../../styles/style";
 
 export const SortBlock = ({
   x,
@@ -31,18 +33,18 @@ export const SortBlock = ({
       {isStriking && (
         <rect
           width={STRIKING_RECT_WIDTH}
-          height={STRIKING_RECT_WIDTH}
-          fill="red"
+          height={STRIKING_RECT_HEIGHT}
+          fill={STRIKING_RECT_COLOR}
           x={x - 7}
-          y={y - 7}
+          y={y - 203}
         />
       )}
       <rect
         width={RECT_WIDTH}
-        height={RECT_HEIGHT}
+        height={RECT_HEIGHT + value * 7}
         fill={color}
         x={x}
-        y={y}
+        y={y - value * 7}
         stroke="#666"
         onClick={handleOpen}
       />

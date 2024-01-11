@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { swap } from "../../feature/swap";
 import { SVG_TEXT_X, SVG_TEXT_Y } from "../../constants/svgTextConst";
-import { SortBlock } from "./SortBlock";
+import { SortBlock } from "../block/SortBlock";
 
 export const BubbleSort = ({
   array,

@@ -1,4 +1,5 @@
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
+import { ACCENT_COLOR } from "../styles/style";
 
 export const Header = () => {
   return (
@@ -7,10 +8,9 @@ export const Header = () => {
       justifyContent="space-between"
       flex={1}
       p="1%"
-      bgcolor="rgb(154, 213, 236)"
+      bgcolor={ACCENT_COLOR}
     >
-      <h1 style={{margin: 0}}>Sort-visualization</h1>
-      {/* <Button variant="contained">使い方</Button> */}
+      <h1 style={{ margin: 0 }}>Sort-visualization</h1>
     </Box>
   );
 };
