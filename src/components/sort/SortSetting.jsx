@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { SortBlock } from "./SortBlock";
+import { SortBlock } from "../block/SortBlock";
 
 export const SortSetting = ({ array, setArray, paleColors, coordinates }) => {
   const [blockComponents, setBlockComponents] = useState(null);

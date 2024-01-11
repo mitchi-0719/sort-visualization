@@ -18,7 +18,7 @@ export const ChangeDialog = ({
 
   const handleChange = (e) => {
     const val = e.target.value;
-    -30 <= val && val <= 30 && setInputValue(val);
+    0 <= val && val <= 30 && setInputValue(val);
   };
 
   const handleDone = () => {
@@ -30,8 +30,14 @@ export const ChangeDialog = ({
     handleClose();
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleDone();
+    }
+  };
+
   return (
-    <Dialog open={dialogOpen} onClose={handleClose}>
+    <Dialog open={dialogOpen} onClose={handleClose} onKeyDown={handleKeyDown}>
       <DialogContent>
         <TextField
           type="number"
