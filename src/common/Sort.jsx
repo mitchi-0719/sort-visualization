@@ -21,12 +21,15 @@ export const Sort = ({
   const [coordinates, setCoordinates] = useState(
     Array(array.length).fill({ x: 0, y: 0 })
   );
+  const [coordinateIndex, setCoordinateIndex] = useState(
+    Array.from({ length: array.length }, (_, index) => index)
+  );
   const [sortIndex, setSortIndex] = useState(0);
   const [sortData, setSortData] = useState([]);
 
   useEffect(() => {
     setCoordinates(calcCoordinates(array.length, width, height));
-  }, [width, height, array.length]);
+  }, [width, height, array]);
 
   return (
     <Box width="80vw" display="flex" flexDirection="column">
@@ -49,6 +52,8 @@ export const Sort = ({
                 coordinates={coordinates}
                 setCoordinates={setCoordinates}
                 sortData={sortData}
+                coordinateIndex={coordinateIndex}
+                setCoordinateIndex={setCoordinateIndex}
               />
             ) : (
               <ErrorPage />
@@ -61,12 +66,14 @@ export const Sort = ({
           sortType={sortType}
           isAsc={order === "asc"}
           array={array}
+          setArray={setArray}
           sortIndex={sortIndex}
           setSortIndex={setSortIndex}
           isRunning={isRunning}
           setIsRunning={setIsRunning}
           sortDataLength={isRunning ? sortData.length : 0}
           setSortData={setSortData}
+          setCoordinateIndex={setCoordinateIndex}
         />
       </Box>
     </Box>

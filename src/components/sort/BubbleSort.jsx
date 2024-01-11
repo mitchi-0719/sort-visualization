@@ -10,11 +10,10 @@ export const BubbleSort = ({
   coordinates,
   setCoordinates,
   sortData,
+  coordinateIndex,
+  setCoordinateIndex,
 }) => {
   const [svgComponent, setSvgComponent] = useState(null);
-  const [coordinateIndex, setCoordinateIndex] = useState(
-    Array.from({ length: array.length }, (_, index) => index)
-  );
 
   useEffect(() => {
     sortData[index].type === "swap" &&
