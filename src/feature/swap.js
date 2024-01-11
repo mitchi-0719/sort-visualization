@@ -25,14 +25,11 @@ export const swap = (
     if (progress < 1) {
       const intermediateCoordinates = newCoordinates.map((coord, idx) => {
         const startX = coordinates[idx].x;
-        const startY = coordinates[idx].y;
         const endX = coord.x;
-        const endY = coord.y;
 
         const currentX = startX + progress * (endX - startX);
-        const currentY = startY + progress * (endY - startY);
 
-        return { x: currentX, y: currentY };
+        return { x: currentX, y: coordinates[idx].y };
       });
 
       setCoordinates(intermediateCoordinates);
