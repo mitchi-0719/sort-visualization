@@ -5,7 +5,6 @@ export const SortSetting = ({ array, setArray, paleColors, coordinates }) => {
   const [blockComponents, setBlockComponents] = useState(null);
 
   useEffect(() => {
-    console.log(array)
     setBlockComponents(() => {
       return array.map((value, idx) => (
         <SortBlock

@@ -45,7 +45,7 @@ export const BubbleSort = ({
         />
       ));
     });
-  }, [index]);
+  }, [index, coordinates]);
 
   return (
     <svg width="80vw" height="70vh">
