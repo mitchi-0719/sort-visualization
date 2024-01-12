@@ -24,11 +24,12 @@ export const SortButton = ({
   const handleReset = () => {
     setIsRunning(false);
     setSortIndex(0);
-    setArray([...Array(10)].map((_, i) => i));
+    setArray([...Array(array.length)].map((_, i) => i));
     setSortData([]);
     setCoordinateIndex(
       Array.from({ length: array.length }, (_, index) => index)
     );
+
   };
 
   return (

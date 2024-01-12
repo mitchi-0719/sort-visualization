@@ -15,6 +15,7 @@ export const Sort = ({
   order,
   isRunning,
   setIsRunning,
+  arrayLength,
 }) => {
   const paleColors = generatePaleColors(array.length);
   const [width, height] = useWindowSize();

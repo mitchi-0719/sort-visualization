@@ -7,20 +7,24 @@ export const SortSetting = ({ array, setArray, paleColors, coordinates }) => {
 
   useEffect(() => {
     setBlockComponents(() => {
-      return array.map((value, idx) => (
-        <SortBlock
-          key={idx}
-          x={coordinates[idx].x}
-          y={coordinates[idx].y}
-          color={paleColors[idx]}
-          isStriking={false}
-          value={value}
-          setArray={setArray}
-          idx={idx}
-          running={false}
-          setTrigger={setTrigger}
-        />
-      ));
+      if (coordinates[0].y !== 0) {
+        return array.map((value, idx) => (
+          <SortBlock
+            key={idx}
+            x={coordinates[idx].x}
+            y={coordinates[idx].y}
+            color={paleColors[idx]}
+            isStriking={false}
+            value={value}
+            setArray={setArray}
+            idx={idx}
+            running={false}
+            setTrigger={setTrigger}
+          />
+        ));
+      }else{
+        return null;
+      }
     });
   }, [coordinates, trigger]);
 

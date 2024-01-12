@@ -1,8 +1,8 @@
-export const getRandArray = (type, setArray) => {
+export const getRandArray = (type, length, setArray) => {
   const arr = [];
   const min = 0;
   const max = 30;
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < length; i++) {
     arr.push(Math.floor(Math.random() * (max - min + 1) + min));
   }
 

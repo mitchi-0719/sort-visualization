@@ -109,21 +109,21 @@ export const Setting = ({
         <Button
           variant="contained"
           disabled={isRunning}
-          onClick={() => getRandArray(0, setArray)}
+          onClick={() => getRandArray(0, arrayLength, setArray)}
         >
           ランダム配列生成
         </Button>
         <Button
           variant="contained"
           disabled={isRunning}
-          onClick={() => getRandArray(-1, setArray)}
+          onClick={() => getRandArray(-1, arrayLength, setArray)}
         >
           ランダム昇順生成
         </Button>
         <Button
           variant="contained"
           disabled={isRunning}
-          onClick={() => getRandArray(1, setArray)}
+          onClick={() => getRandArray(1, arrayLength, setArray)}
         >
           ランダム降順生成
         </Button>
