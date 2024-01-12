@@ -3,6 +3,7 @@ import { SortBlock } from "../block/SortBlock";
 
 export const SortSetting = ({ array, setArray, paleColors, coordinates }) => {
   const [blockComponents, setBlockComponents] = useState(null);
+  const [trigger, setTrigger] = useState(false);
 
   useEffect(() => {
     setBlockComponents(() => {
@@ -17,10 +18,11 @@ export const SortSetting = ({ array, setArray, paleColors, coordinates }) => {
           setArray={setArray}
           idx={idx}
           running={false}
+          setTrigger={setTrigger}
         />
       ));
     });
-  }, [array, coordinates]);
+  }, [coordinates, trigger]);
 
   return (
     <svg width="80vw" height="70vh">

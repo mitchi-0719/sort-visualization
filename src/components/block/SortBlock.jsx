@@ -17,6 +17,7 @@ export const SortBlock = ({
   setArray,
   idx,
   running,
+  setTrigger,
 }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -61,6 +62,7 @@ export const SortBlock = ({
           setDialogOpen={setDialogOpen}
           idx={idx}
           setArray={setArray}
+          setTrigger={setTrigger}
         />
       )}
     </g>
