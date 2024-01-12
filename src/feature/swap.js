@@ -16,7 +16,7 @@ export const swap = (
   newCoordinateIndex[i1] = newCoordinateIndex[i2];
   newCoordinateIndex[i2] = temp;
 
-  const duration = 500;
+  const duration = 300;
   const startTime = performance.now();
 
   const animate = (timestamp) => {
