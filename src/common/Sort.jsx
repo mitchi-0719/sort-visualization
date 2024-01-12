@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { calcCoordinates } from "../feature/calcCoordinates";
 import { ErrorPage } from "./ErrorPage";
 import { BubbleSort } from "../components/sort/BubbleSort";
+import { SelectionSort } from "../components/sort/SelectionSort";
 
 export const Sort = ({
   array,
@@ -15,7 +16,6 @@ export const Sort = ({
   order,
   isRunning,
   setIsRunning,
-  arrayLength,
 }) => {
   const paleColors = generatePaleColors(array.length);
   const [width, height] = useWindowSize();
@@ -56,7 +56,19 @@ export const Sort = ({
                 coordinateIndex={coordinateIndex}
                 setCoordinateIndex={setCoordinateIndex}
               />
-            ) : (
+            ) : sortType === "selection" ?(
+              <SelectionSort
+                array={array}
+                index={sortIndex}
+                paleColors={paleColors}
+                sortIndex={sortIndex}
+                coordinates={coordinates}
+                setCoordinates={setCoordinates}
+                sortData={sortData}
+                coordinateIndex={coordinateIndex}
+                setCoordinateIndex={setCoordinateIndex}
+              />
+            ): (
               <ErrorPage />
             )}
           </>
