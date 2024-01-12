@@ -72,7 +72,7 @@ export const Sort = ({
           setSortIndex={setSortIndex}
           isRunning={isRunning}
           setIsRunning={setIsRunning}
-          sortDataLength={isRunning ? sortData.length : 0}
+          sortDataLength={isRunning ? sortData.logs.length : 0}
           setSortData={setSortData}
           setCoordinateIndex={setCoordinateIndex}
         />

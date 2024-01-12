@@ -17,7 +17,7 @@ export const SortButton = ({
 }) => {
   const handleFetch = async () => {
     const res = await apiFetch(sortType, isAsc, array);
-    setSortData(res.API_Response.sort_log.log.logs);
+    setSortData(res.API_Response.sort_log.log);
     setIsRunning(true);
   };
 
