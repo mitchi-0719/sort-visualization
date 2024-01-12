@@ -13,6 +13,7 @@ export const ChangeDialog = ({
   setDialogOpen,
   idx,
   setArray,
+  setTrigger,
 }) => {
   const [inputValue, setInputValue] = useState(value);
 
@@ -31,6 +32,7 @@ export const ChangeDialog = ({
       next[idx] = Number(inputValue);
       return next;
     });
+    setTrigger((prev) => !prev);
     handleClose();
   };
 

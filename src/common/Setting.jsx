@@ -7,15 +7,20 @@ import {
   RadioGroup,
   Typography,
 } from "@mui/material";
+import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material/";
 import Select from "react-select";
 import { getRandArray } from "../feature/getRandArray";
+import { useEffect } from "react";
 
 export const Setting = ({
+  array,
   setSortType,
   order,
   setOrder,
   setArray,
   isRunning,
+  arrayLength,
+  setArrayLength,
 }) => {
   const options = [
     { value: "bubble", label: "Bubble sort (交換ソート)" },
@@ -31,11 +36,17 @@ export const Setting = ({
     { value: "desc", label: "降順" },
   ];
 
-  // const handleChange = (e) => {
-  //   if (2 <= e.target.value <= 10) {
-  //     setArrayCount(e.target.value);
-  //   }
-  // };
+  const handleSpinButtonClick = (val) => {
+    setArrayLength((prev) => prev + val);
+  };
+
+  useEffect(() => {
+    if (arrayLength < array.length) {
+      setArray(array.slice(0, arrayLength));
+    } else if (arrayLength > array.length) {
+      setArray([...array, 0]);
+    }
+  }, [arrayLength]);
 
   return (
     <Box
@@ -56,13 +67,26 @@ export const Setting = ({
         onChange={(e) => setSortType(e.value)}
         isDisabled={isRunning}
       />
-      {/* <TextField
-        type="number"
-        label="配列の要素数"
-        defaultValue={arrayCount}
-        onChange={handleChange}
-        inputProps={{ min: 2, max: 10 }}
-      /> */}
+      <Typography>配列要素数</Typography>
+      <Box display="flex">
+        <Button
+          variant="outlined"
+          onClick={() => handleSpinButtonClick(-1)}
+          disabled={arrayLength === 2}
+        >
+          <RemoveCircleOutline />
+        </Button>
+        <Typography variant="h5" style={{ margin: "auto 16px" }}>
+          {arrayLength}
+        </Typography>
+        <Button
+          variant="outlined"
+          onClick={() => handleSpinButtonClick(1)}
+          disabled={arrayLength === 10}
+        >
+          <AddCircleOutline />
+        </Button>
+      </Box>
       <FormControl>
         <RadioGroup row>
           {radioValues.map((val, index) => {

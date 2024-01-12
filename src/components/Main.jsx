@@ -4,7 +4,8 @@ import { Setting } from "../common/Setting";
 import { Sort } from "../common/Sort";
 
 export const Main = () => {
-  const [array, setArray] = useState([...Array(10)].map((_, i) => i));
+  const [arrayLength, setArrayLength] = useState(10);
+  const [array, setArray] = useState([...Array(arrayLength)].map((_, i) => i));
   const [sortType, setSortType] = useState("bubble");
   const [order, setOrder] = useState("asc");
   const [isRunning, setIsRunning] = useState(false);
@@ -12,11 +13,14 @@ export const Main = () => {
   return (
     <Box display="flex" height="80vh">
       <Setting
+        array={array}
         setSortType={setSortType}
         order={order}
         setOrder={setOrder}
         setArray={setArray}
         isRunning={isRunning}
+        arrayLength={arrayLength}
+        setArrayLength={setArrayLength}
       />
       <Sort
         array={array}
