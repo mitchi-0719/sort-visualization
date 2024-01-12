@@ -72,7 +72,7 @@ export const Setting = ({
         <Button
           variant="outlined"
           onClick={() => handleSpinButtonClick(-1)}
-          disabled={arrayLength === 2}
+          disabled={isRunning || arrayLength === 2}
         >
           <RemoveCircleOutline />
         </Button>
@@ -82,7 +82,7 @@ export const Setting = ({
         <Button
           variant="outlined"
           onClick={() => handleSpinButtonClick(1)}
-          disabled={arrayLength === 10}
+          disabled={isRunning || arrayLength === 10}
         >
           <AddCircleOutline />
         </Button>
