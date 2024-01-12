@@ -16,12 +16,12 @@ export const BubbleSort = ({
   const [svgComponent, setSvgComponent] = useState(null);
 
   useEffect(() => {
-    sortData.logs[index].type === "swap" &&
+    sortData[index].type === "swap" &&
       swap(
         coordinates,
         setCoordinates,
-        sortData.logs[index].index1,
-        sortData.logs[index].index2,
+        sortData[index].index1,
+        sortData[index].index2,
         coordinateIndex,
         setCoordinateIndex
       );
@@ -36,8 +36,8 @@ export const BubbleSort = ({
           y={coordinates[idx].y}
           color={paleColors[idx]}
           isStriking={
-            idx === coordinateIndex[sortData.logs[index].index1] ||
-            idx === coordinateIndex[sortData.logs[index].index2]
+            idx === coordinateIndex[sortData[index].index1] ||
+            idx === coordinateIndex[sortData[index].index2]
           }
           value={value}
           running={true}
@@ -55,7 +55,7 @@ export const BubbleSort = ({
         alignmentBaseline="middle"
         fontSize="20"
         fill="#333"
-      >{`処理数 : ${index} / ${sortData.logs.length - 1}`}</text>
+      >{`処理数 : ${index} / ${sortData.length - 1}`}</text>
       <text
         x={SVG_TEXT_X}
         y={SVG_TEXT_Y + 30}
@@ -64,7 +64,7 @@ export const BubbleSort = ({
         fontSize="20"
         fill="#333"
       >
-        {`status: ${sortData.logs[index].type}`}
+        {`status: ${sortData[index].type}`}
       </text>
       {svgComponent}
     </svg>
