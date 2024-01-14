@@ -10,7 +10,16 @@ import {
 import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material/";
 import Select from "react-select";
 import { getRandArray } from "../feature/getRandArray";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { Context } from "../context/context";
+import {
+  DARK_SIDE_BG_COLOR,
+  DARK_SIDE_BORDER_COLOR,
+  DARK_TEXT_COLOR,
+  LIGHT_SIDE_BG_COLOR,
+  LIGHT_SIDE_BORDER_COLOR,
+  LIGHT_TEXT_COLOR,
+} from "../styles/style";
 
 export const Setting = ({
   array,
@@ -22,6 +31,8 @@ export const Setting = ({
   arrayLength,
   setArrayLength,
 }) => {
+  const { isDark } = useContext(Context);
+
   const options = [
     { value: "bubble", label: "Bubble sort (交換ソート)" },
     { value: "selection", label: "Selection sort (選択ソート)" },
@@ -55,11 +66,18 @@ export const Setting = ({
       justifyContent="space-around"
       width="20vw"
       border={3}
-      borderColor="#0070ff"
+      borderColor={isDark ? DARK_SIDE_BORDER_COLOR : LIGHT_SIDE_BORDER_COLOR}
       rowGap={1}
-      sx={{ background: "#fff", p: 1 }}
+      p={1}
+      bgcolor={isDark ? DARK_SIDE_BG_COLOR : LIGHT_SIDE_BG_COLOR}
+      boxShadow="2px 0px 5px 0px rgba(0,0,0,0.5)"
     >
-      <Typography variant="h6">ソート設定</Typography>
+      <Typography
+        variant="h6"
+        color={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}
+      >
+        ソート設定
+      </Typography>
       <Select
         defaultValue={{ value: "bubble", label: "Bubble sort (交換ソート)" }}
         options={options}
@@ -67,7 +85,9 @@ export const Setting = ({
         onChange={(e) => setSortType(e.value)}
         isDisabled={isRunning}
       />
-      <Typography>配列要素数</Typography>
+      <Typography color={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}>
+        配列要素数
+      </Typography>
       <Box display="flex">
         <Button
           variant="outlined"
@@ -76,7 +96,11 @@ export const Setting = ({
         >
           <RemoveCircleOutline />
         </Button>
-        <Typography variant="h5" style={{ margin: "auto 16px" }}>
+        <Typography
+          variant="h5"
+          style={{ margin: "auto 16px" }}
+          color={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}
+        >
           {arrayLength}
         </Typography>
         <Button
@@ -95,7 +119,13 @@ export const Setting = ({
                 key={index}
                 value={val.value}
                 control={<Radio />}
-                label={val.label}
+                label={
+                  <Typography
+                    color={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}
+                  >
+                    {val.label}
+                  </Typography>
+                }
                 onChange={(e) => setOrder(e.target.value)}
                 checked={order === val.value}
                 disabled={isRunning}

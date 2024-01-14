@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { SortSetting } from "../components/sort/SortSetting";
 import { SortButton } from "../components/sort/SortButton";
-import { generatePaleColors } from "../feature/generatePaleColors";
+import { generateColors } from "../feature/generateColors";
 import { useWindowSize } from "../feature/useWindowSize";
 import { useEffect, useState } from "react";
 import { calcCoordinates } from "../feature/calcCoordinates";
@@ -17,7 +17,7 @@ export const Sort = ({
   isRunning,
   setIsRunning,
 }) => {
-  const paleColors = generatePaleColors(array.length);
+  const paleColors = generateColors(array.length);
   const [width, height] = useWindowSize();
   const [coordinates, setCoordinates] = useState(
     Array(array.length).fill({ x: 0, y: 0 })

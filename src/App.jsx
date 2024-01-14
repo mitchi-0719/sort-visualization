@@ -1,15 +1,11 @@
-import { Header } from "./common/Header";
-import { Main } from "./components/Main";
-import { Footer } from "./common/Footer";
-import { Box } from "@mui/material";
+import { Top } from "./Top";
+import { ContextProvider } from "./context/contextProvider";
 
 function App() {
   return (
-    <Box display="flex" flexDirection="column" height="100vh">
-      <Header />
-      <Main />
-      <Footer />
-    </Box>
+    <ContextProvider>
+      <Top />
+    </ContextProvider>
   );
 }
 

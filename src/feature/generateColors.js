@@ -1,6 +1,6 @@
-export const generatePaleColors = (count) => {
+export const generateColors = (count) => {
   const baseHue = 60;
-  const saturation = 90;
+  const saturation = 70;
   const lightness = 70;
   const step = 360 / count;
 

@@ -1,16 +1,41 @@
-import { Box } from "@mui/material";
-import { ACCENT_COLOR } from "../styles/style";
+import { Box, Button } from "@mui/material";
+import {
+  DARK_ACCENT_COLOR,
+  DARK_TEXT_COLOR,
+  LIGHT_ACCENT_COLOR,
+  LIGHT_TEXT_COLOR,
+} from "../styles/style";
+import { DarkMode, LightMode } from "@mui/icons-material";
+import { useContext } from "react";
+import { Context } from "../context/context";
 
 export const Header = () => {
+  const { isDark, setIsDark } = useContext(Context);
   return (
     <Box
       display="flex"
       justifyContent="space-between"
       flex={1}
       p="1%"
-      bgcolor={ACCENT_COLOR}
+      bgcolor={isDark ? DARK_ACCENT_COLOR : LIGHT_ACCENT_COLOR}
+      boxShadow="0px 4px 5px 0px rgba(0,0,0,0.5)"
+      zIndex={1000}
     >
-      <h1 style={{ margin: 0 }}>Sort-visualization</h1>
+      <h1
+        style={{
+          margin: 0,
+          color: isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR,
+        }}
+      >
+        Sort-visualization
+      </h1>
+      <Button
+        variant="contained"
+        onClick={() => setIsDark((prev) => !prev)}
+        startIcon={isDark ? <DarkMode /> : <LightMode />}
+      >
+        {isDark ? "light" : "dark"}
+      </Button>
     </Box>
   );
 };
