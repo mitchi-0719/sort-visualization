@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   RECT_HEIGHT,
   RECT_WIDTH,
@@ -6,7 +6,12 @@ import {
   STRIKING_RECT_WIDTH,
 } from "../../constants/blockConst";
 import { ChangeDialog } from "./ChangeDialog";
-import { STRIKING_RECT_COLOR } from "../../styles/style";
+import {
+  DARK_BLOCK_BORDER_COLOR,
+  LIGHT_BLOCK_BORDER_COLOR,
+  STRIKING_RECT_COLOR,
+} from "../../styles/style";
+import { Context } from "../../context/context";
 
 export const SortBlock = ({
   x,
@@ -20,6 +25,7 @@ export const SortBlock = ({
   setTrigger,
 }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
+  const { isDark } = useContext(Context);
 
   const handleOpen = () => {
     setDialogOpen(true);
@@ -42,7 +48,7 @@ export const SortBlock = ({
         fill={color}
         x={x}
         y={y - value * 8}
-        stroke="#666"
+        stroke={isDark ? DARK_BLOCK_BORDER_COLOR : LIGHT_BLOCK_BORDER_COLOR}
         onClick={handleOpen}
       />
       <text
