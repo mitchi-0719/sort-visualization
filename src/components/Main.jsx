@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { Setting } from "../common/Setting";
 import { Sort } from "../common/Sort";
+import { getRandArray } from "../feature/getRandArray";
 
 export const Main = () => {
   const [arrayLength, setArrayLength] = useState(10);
@@ -9,6 +10,10 @@ export const Main = () => {
   const [sortType, setSortType] = useState("bubble");
   const [order, setOrder] = useState("asc");
   const [isRunning, setIsRunning] = useState(false);
+
+  useEffect(() => {
+    getRandArray(0, arrayLength, setArray);
+  }, []);
 
   return (
     <Box display="flex" height="80vh">
