@@ -32,7 +32,7 @@ export const Header = () => {
       <Button
         variant="contained"
         onClick={() => setIsDark((prev) => !prev)}
-        startIcon={isDark ? <DarkMode /> : <LightMode />}
+        startIcon={isDark ? <LightMode /> : <DarkMode />}
       >
         {isDark ? "light" : "dark"}
       </Button>
