@@ -48,7 +48,7 @@ export const SortButton = ({
       <Button
         variant="contained"
         onClick={handleAuto}
-        disabled={sortIndex === sortDataLength - 1 || !isRunning}
+        disabled={sortIndex === sortDataLength - 1 || !isRunning || autoRunning}
       >
         Auto
       </Button>

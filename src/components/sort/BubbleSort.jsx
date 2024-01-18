@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { swap } from "../../feature/swap";
 import { SVG_TEXT_X, SVG_TEXT_Y } from "../../constants/svgTextConst";
 import { SortBlock } from "../block/SortBlock";
+import { DARK_TEXT_COLOR, LIGHT_TEXT_COLOR } from "../../styles/style";
+import { Context } from "../../context/context";
 
 export const BubbleSort = ({
   array,
@@ -13,6 +15,7 @@ export const BubbleSort = ({
   coordinateIndex,
   setCoordinateIndex,
 }) => {
+  const { isDark } = useContext(Context);
   const [svgComponent, setSvgComponent] = useState(null);
 
   useEffect(() => {
@@ -54,7 +57,7 @@ export const BubbleSort = ({
         textAnchor="middle"
         alignmentBaseline="middle"
         fontSize="20"
-        fill="#333"
+        fill={isDark ? DARK_TEXT_COLOR: LIGHT_TEXT_COLOR}
       >{`処理数 : ${index} / ${sortData.length - 1}`}</text>
       <text
         x={SVG_TEXT_X}
@@ -62,7 +65,7 @@ export const BubbleSort = ({
         textAnchor="middle"
         alignmentBaseline="middle"
         fontSize="20"
-        fill="#333"
+        fill={isDark ? DARK_TEXT_COLOR: LIGHT_TEXT_COLOR}
       >
         {`status: ${sortData[index].type}`}
       </text>
