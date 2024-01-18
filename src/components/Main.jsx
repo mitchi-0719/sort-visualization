@@ -12,7 +12,7 @@ export const Main = () => {
   const [isRunning, setIsRunning] = useState(false);
 
   useEffect(() => {
-    getRandArray(0, arrayLength, setArray);
+    setArray(getRandArray(0, arrayLength));
   }, []);
 
   return (

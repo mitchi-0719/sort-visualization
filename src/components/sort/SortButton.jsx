@@ -1,6 +1,7 @@
 import { Box, Button } from "@mui/material";
 import { PlayCircle } from "@mui/icons-material/";
 import { apiFetch } from "../../api/apiFetch";
+import { getRandArray } from "../../feature/getRandArray";
 
 export const SortButton = ({
   sortType,
@@ -24,7 +25,7 @@ export const SortButton = ({
   const handleReset = () => {
     setIsRunning(false);
     setSortIndex(0);
-    setArray([...Array(array.length)].map((_, i) => i));
+    setArray(getRandArray(0, array.length));
     setSortData([]);
     setCoordinateIndex(
       Array.from({ length: array.length }, (_, index) => index)

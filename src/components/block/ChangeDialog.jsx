@@ -6,6 +6,7 @@ import {
   TextField,
 } from "@mui/material";
 import { useEffect, useState } from "react";
+import { MAX_NUMBER, MIN_NUMBER } from "../../constants/number";
 
 export const ChangeDialog = ({
   value,
@@ -23,7 +24,9 @@ export const ChangeDialog = ({
 
   const handleChange = (e) => {
     const val = e.target.value;
-    val != "" && 0 <= val && val <= 30 && setInputValue(Number(val));
+    const min = MIN_NUMBER;
+    const max = MAX_NUMBER;
+    val != "" && min <= val && val <= max && setInputValue(Number(val));
   };
 
   const handleDone = () => {
@@ -52,8 +55,8 @@ export const ChangeDialog = ({
         <TextField
           type="number"
           inputProps={{
-            min: 0,
-            max: 30,
+            min: MIN_NUMBER,
+            max: MAX_NUMBER,
           }}
           defaultValue={value}
           onChange={handleChange}

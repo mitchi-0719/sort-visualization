@@ -20,6 +20,7 @@ import {
   LIGHT_SIDE_BORDER_COLOR,
   LIGHT_TEXT_COLOR,
 } from "../styles/style";
+import { MAX_NUMBER, MIN_NUMBER } from "../constants/number";
 
 export const Setting = ({
   array,
@@ -35,7 +36,7 @@ export const Setting = ({
 
   const options = [
     { value: "bubble", label: "Bubble sort (交換ソート)" },
-    { value: "selection", label: "Selection sort (選択ソート)" },
+    // { value: "selection", label: "Selection sort (選択ソート)" },
     // { value: "insertion", label: "Insertion sort (挿入ソート)" },
     // { value: "quick", label: "Quick sort" },
     // { value: "heap", label: "Heap sort" },
@@ -51,11 +52,18 @@ export const Setting = ({
     setArrayLength((prev) => prev + val);
   };
 
+  const generateRandNum = () => {
+    const max = MAX_NUMBER;
+    const min = MIN_NUMBER;
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
+
   useEffect(() => {
     if (arrayLength < array.length) {
       setArray(array.slice(0, arrayLength));
     } else if (arrayLength > array.length) {
-      setArray([...array, 0]);
+      const randNum = generateRandNum();
+      setArray([...array, randNum]);
     }
   }, [arrayLength]);
 
@@ -139,21 +147,21 @@ export const Setting = ({
         <Button
           variant="contained"
           disabled={isRunning}
-          onClick={() => getRandArray(0, arrayLength, setArray)}
+          onClick={() => setArray(getRandArray(0, arrayLength))}
         >
           ランダム配列生成
         </Button>
         <Button
           variant="contained"
           disabled={isRunning}
-          onClick={() => getRandArray(-1, arrayLength, setArray)}
+          onClick={() => setArray(getRandArray(-1, arrayLength))}
         >
           ランダム昇順生成
         </Button>
         <Button
           variant="contained"
           disabled={isRunning}
-          onClick={() => getRandArray(1, arrayLength, setArray)}
+          onClick={() => setArray(getRandArray(1, arrayLength))}
         >
           ランダム降順生成
         </Button>

@@ -1,7 +1,9 @@
-export const getRandArray = (type, length, setArray) => {
+import { MAX_NUMBER, MIN_NUMBER } from "../constants/number";
+
+export const getRandArray = (type, length) => {
   const arr = [];
-  const min = 0;
-  const max = 30;
+  const min = MIN_NUMBER;
+  const max = MAX_NUMBER;
   for (let i = 0; i < length; i++) {
     arr.push(Math.floor(Math.random() * (max - min + 1) + min));
   }
@@ -14,5 +16,5 @@ export const getRandArray = (type, length, setArray) => {
   } else if (type === 1) {
     arr.sort((a, b) => b - a);
   }
-  setArray(arr);
+  return arr;
 };
