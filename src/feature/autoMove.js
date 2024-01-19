@@ -14,5 +14,5 @@ export const autoMove = (
       clearInterval(intervalId);
       setAutoRunning(false);
     }
-  }, 400);
+  }, 300);
 };
