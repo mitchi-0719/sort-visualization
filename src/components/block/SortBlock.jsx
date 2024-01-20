@@ -40,7 +40,7 @@ export const SortBlock = ({
           height={STRIKING_RECT_HEIGHT}
           fill={strikingColor}
           x={x - 7}
-          y={y - 250}
+          y={y - 7}
         />
       )}
       <rect
@@ -48,17 +48,19 @@ export const SortBlock = ({
         height={RECT_HEIGHT + value * 8}
         fill={color}
         x={x}
-        y={y - value * 8}
+        y={y}
         stroke={isDark ? DARK_BLOCK_BORDER_COLOR : LIGHT_BLOCK_BORDER_COLOR}
         onClick={handleOpen}
+        style={{ transition: "height 0.5s ease-in-out" }}
       />
       <text
         x={x + RECT_WIDTH / 2}
-        y={y + RECT_HEIGHT / 2}
+        y={-(y + RECT_HEIGHT / 2)}
         textAnchor="middle"
         alignmentBaseline="middle"
         fontSize="20"
         fill="#333"
+        transform="scale(1, -1)"
       >
         {value}
       </text>
