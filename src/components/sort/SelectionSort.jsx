@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { swap } from "../../feature/swap";
 import { SVG_TEXT_X, SVG_TEXT_Y } from "../../constants/svgTextConst";
 import { SortBlock } from "../block/SortBlock";
 import {
+  DARK_TEXT_COLOR,
+  LIGHT_TEXT_COLOR,
   SELECTION_MAX_TEXT_Y,
   SELECTION_STRIKING_RECT_COLOR,
   STRIKING_RECT_COLOR,
 } from "../../styles/style";
 import { RECT_WIDTH } from "../../constants/blockConst";
+import { Context } from "../../context/context";
 
 export const SelectionSort = ({
   array,
@@ -21,6 +24,7 @@ export const SelectionSort = ({
   order,
 }) => {
   const [svgComponent, setSvgComponent] = useState(null);
+  const { isDark } = useContext(Context);
 
   useEffect(() => {
     sortData[index].type === "swap" &&
@@ -45,7 +49,7 @@ export const SelectionSort = ({
               textAnchor="middle"
               alignmentBaseline="middle"
               fontSize="20"
-              fill="#333"
+              fill={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}
             >
               {order === "asc" ? "min" : "max"}
             </text>
