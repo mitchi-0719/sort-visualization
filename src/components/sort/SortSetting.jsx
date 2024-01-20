@@ -22,7 +22,7 @@ export const SortSetting = ({ array, setArray, paleColors, coordinates }) => {
             setTrigger={setTrigger}
           />
         ));
-      }else{
+      } else {
         return null;
       }
     });

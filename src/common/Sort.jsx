@@ -34,7 +34,7 @@ export const Sort = ({
 
   return (
     <Box width="80vw" display="flex" flexDirection="column">
-      <Box height="90%">
+      <Box height="90%" sx={{ transform: "scale(1, -1)" }}>
         {!isRunning ? (
           <SortSetting
             array={array}
