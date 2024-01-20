@@ -56,7 +56,7 @@ export const Sort = ({
                 coordinateIndex={coordinateIndex}
                 setCoordinateIndex={setCoordinateIndex}
               />
-            ) : sortType === "selection" ?(
+            ) : sortType === "selection" ? (
               <SelectionSort
                 array={array}
                 index={sortIndex}
@@ -67,8 +67,9 @@ export const Sort = ({
                 sortData={sortData}
                 coordinateIndex={coordinateIndex}
                 setCoordinateIndex={setCoordinateIndex}
+                order={order}
               />
-            ): (
+            ) : (
               <ErrorPage />
             )}
           </>

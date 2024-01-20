@@ -18,6 +18,7 @@ export const SortBlock = ({
   y,
   color,
   isStriking,
+  strikingColor,
   value,
   setArray,
   idx,
@@ -37,7 +38,7 @@ export const SortBlock = ({
         <rect
           width={STRIKING_RECT_WIDTH}
           height={STRIKING_RECT_HEIGHT}
-          fill={STRIKING_RECT_COLOR}
+          fill={strikingColor}
           x={x - 7}
           y={y - 250}
         />

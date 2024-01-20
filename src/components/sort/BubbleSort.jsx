@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { swap } from "../../feature/swap";
 import { SVG_TEXT_X, SVG_TEXT_Y } from "../../constants/svgTextConst";
 import { SortBlock } from "../block/SortBlock";
-import { DARK_TEXT_COLOR, LIGHT_TEXT_COLOR } from "../../styles/style";
+import { DARK_TEXT_COLOR, LIGHT_TEXT_COLOR, STRIKING_RECT_COLOR } from "../../styles/style";
 import { Context } from "../../context/context";
 
 export const BubbleSort = ({
@@ -42,6 +42,7 @@ export const BubbleSort = ({
             idx === coordinateIndex[sortData[index].index1] ||
             idx === coordinateIndex[sortData[index].index2]
           }
+          strikingColor={STRIKING_RECT_COLOR}
           value={value}
           running={true}
         />

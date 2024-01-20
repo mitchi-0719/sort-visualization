@@ -36,7 +36,7 @@ export const Setting = ({
 
   const options = [
     { value: "bubble", label: "Bubble sort (交換ソート)" },
-    // { value: "selection", label: "Selection sort (選択ソート)" },
+    { value: "selection", label: "Selection sort (選択ソート)" },
     // { value: "insertion", label: "Insertion sort (挿入ソート)" },
     // { value: "quick", label: "Quick sort" },
     // { value: "heap", label: "Heap sort" },
