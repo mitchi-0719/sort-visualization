@@ -14,10 +14,10 @@ export const SortButton = ({
   setSortData,
   setCoordinateIndex,
 }) => {
-  const { autoRunning, setAutoRunning } = useContext(autoModeContext);
+  const { autoRunning, setAutoRunning, autoSpeed } = useContext(autoModeContext);
 
   const handleAuto = () => {
-    autoMove(sortIndex, setSortIndex, sortDataLength, setAutoRunning);
+    autoMove(sortIndex, setSortIndex, sortDataLength, setAutoRunning, autoSpeed);
   };
 
   const handleReset = () => {

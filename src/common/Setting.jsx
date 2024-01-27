@@ -23,15 +23,9 @@ import {
 import { MAX_NUMBER, MIN_NUMBER } from "../constants/number";
 import { autoModeContext } from "../context/AutoModeContext";
 
-export const Setting = ({
-  array,
-  setSortType,
-  order,
-  setOrder,
-  setArray,
-}) => {
+export const Setting = ({ array, setSortType, order, setOrder, setArray }) => {
   const { isDark } = useContext(darkModeContext);
-  const { autoRunning } = useContext(autoModeContext);
+  const { autoRunning, autoSpeed, setAutoSpeed } = useContext(autoModeContext);
   const [arrayLength, setArrayLength] = useState(array.length);
 
   const options = [
@@ -48,8 +42,8 @@ export const Setting = ({
     { value: "desc", label: "降順" },
   ];
 
-  const handleSpinButtonClick = (val) => {
-    setArrayLength((prev) => prev + val);
+  const handleSpinButtonClick = (val, setState) => {
+    setState((prev) => prev + val);
   };
 
   const generateRandNum = () => {
@@ -90,6 +84,7 @@ export const Setting = ({
       >
         ソート設定
       </Typography>
+
       <Select
         defaultValue={{ value: "bubble", label: "Bubble sort (交換ソート)" }}
         options={options}
@@ -97,13 +92,14 @@ export const Setting = ({
         onChange={(e) => setSortType(e.value)}
         isDisabled={autoRunning}
       />
+
       <Typography color={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}>
         配列要素数
       </Typography>
       <Box display="flex">
         <Button
           variant="outlined"
-          onClick={() => handleSpinButtonClick(-1)}
+          onClick={() => handleSpinButtonClick(-1, setArrayLength)}
           disabled={autoRunning || arrayLength === 2}
         >
           <RemoveCircleOutline />
@@ -117,12 +113,13 @@ export const Setting = ({
         </Typography>
         <Button
           variant="outlined"
-          onClick={() => handleSpinButtonClick(1)}
+          onClick={() => handleSpinButtonClick(1, setArrayLength)}
           disabled={autoRunning || arrayLength === 10}
         >
           <AddCircleOutline />
         </Button>
       </Box>
+
       <FormControl>
         <RadioGroup row>
           {radioValues.map((val, index) => {
@@ -146,6 +143,33 @@ export const Setting = ({
           })}
         </RadioGroup>
       </FormControl>
+
+      <Typography color={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}>
+        オートモード速度
+      </Typography>
+      <Box display="flex">
+        <Button
+          variant="outlined"
+          onClick={() => handleSpinButtonClick(-50, setAutoSpeed)}
+          disabled={autoRunning || autoSpeed === 300}
+        >
+          <RemoveCircleOutline />
+        </Button>
+        <Typography
+          variant="h5"
+          style={{ margin: "auto 16px" }}
+          color={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}
+        >
+          {`${autoSpeed}ms`}
+        </Typography>
+        <Button
+          variant="outlined"
+          onClick={() => handleSpinButtonClick(50, setAutoSpeed)}
+          disabled={autoRunning || autoSpeed === 600}
+        >
+          <AddCircleOutline />
+        </Button>
+      </Box>
 
       <Box rowGap={1} display="flex" flexDirection="column">
         <Button
