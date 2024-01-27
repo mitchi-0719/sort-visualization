@@ -11,6 +11,7 @@ import {
 } from "../../styles/style";
 import { RECT_WIDTH } from "../../constants/blockConst";
 import { darkModeContext } from "../../context/DarkModeContext";
+import { useWindowSize } from "../../feature/useWindowSize";
 
 export const SelectionSort = ({
   array,
@@ -27,6 +28,7 @@ export const SelectionSort = ({
   const [svgComponent, setSvgComponent] = useState(null);
   const [svgText, setSvgText] = useState(null);
   const { isDark } = useContext(darkModeContext);
+  const windowSIze = useWindowSize();
 
   useEffect(() => {
     sortData[sortIndex].type === "swap" &&
