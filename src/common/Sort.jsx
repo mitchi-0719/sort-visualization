@@ -39,7 +39,7 @@ export const Sort = ({ array, setArray, sortType, order }) => {
 
   return (
     <Box width="80vw" display="flex" flexDirection="column">
-      <Box height="90%" sx={{ transform: "scale(1, -1)" }} bgcolor={"#ffd900"}>
+      <Box height="90%" sx={{ transform: "scale(1, -1)" }}>
         {sortData.length === 0 ? (
           <Loading />
         ) : (
