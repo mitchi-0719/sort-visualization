@@ -2,33 +2,66 @@ import { useContext, useEffect, useState } from "react";
 import { swap } from "../../feature/swap";
 import { SVG_TEXT_X, SVG_TEXT_Y } from "../../constants/svgTextConst";
 import { SortBlock } from "../block/SortBlock";
-import { DARK_TEXT_COLOR, LIGHT_TEXT_COLOR, STRIKING_RECT_COLOR } from "../../styles/style";
-import { Context } from "../../context/context";
+import {
+  DARK_TEXT_COLOR,
+  LIGHT_TEXT_COLOR,
+  STRIKING_RECT_COLOR,
+} from "../../styles/style";
+import { darkModeContext } from "../../context/DarkModeContext";
 
 export const BubbleSort = ({
   array,
+  setArray,
   paleColors,
-  index,
+  sortIndex,
   coordinates,
   setCoordinates,
   sortData,
   coordinateIndex,
   setCoordinateIndex,
 }) => {
-  const { isDark } = useContext(Context);
   const [svgComponent, setSvgComponent] = useState(null);
+  const [svgText, setSvgText] = useState(null);
+  const { isDark } = useContext(darkModeContext);
 
   useEffect(() => {
-    sortData[index].type === "swap" &&
+    sortData[sortIndex].type === "swap" &&
       swap(
         coordinates,
         setCoordinates,
-        sortData[index].index1,
-        sortData[index].index2,
+        sortData[sortIndex].index1,
+        sortData[sortIndex].index2,
         coordinateIndex,
         setCoordinateIndex
       );
-  }, [index]);
+  }, [sortIndex]);
+
+  useEffect(() => {
+    setSvgText(() => {
+      return (
+        <>
+          <text
+            x={SVG_TEXT_X}
+            y={SVG_TEXT_Y}
+            textAnchor="middle"
+            alignmentBaseline="middle"
+            fontSize="20"
+            fill={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}
+          >{`処理数 : ${sortIndex} / ${sortData.length - 1}`}</text>
+          <text
+            x={SVG_TEXT_X}
+            y={SVG_TEXT_Y + 30}
+            textAnchor="middle"
+            alignmentBaseline="middle"
+            fontSize="20"
+            fill={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}
+          >
+            {`status: ${sortData[sortIndex].type}`}
+          </text>
+        </>
+      );
+    });
+  }, [isDark, sortIndex]);
 
   useEffect(() => {
     setSvgComponent(() => {
@@ -39,37 +72,22 @@ export const BubbleSort = ({
           y={coordinates[idx].y}
           color={paleColors[idx]}
           isStriking={
-            idx === coordinateIndex[sortData[index].index1] ||
-            idx === coordinateIndex[sortData[index].index2]
+            idx === coordinateIndex[sortData[sortIndex].index1] ||
+            idx === coordinateIndex[sortData[sortIndex].index2]
           }
           strikingColor={STRIKING_RECT_COLOR}
           value={value}
-          running={true}
+          running={sortIndex !== 0}
+          setArray={setArray}
+          idx={idx}
         />
       ));
     });
-  }, [index, coordinates]);
+  }, [sortIndex, coordinates]);
 
   return (
     <svg width="80vw" height="70vh">
-      <text
-        x={SVG_TEXT_X}
-        y={SVG_TEXT_Y}
-        textAnchor="middle"
-        alignmentBaseline="middle"
-        fontSize="20"
-        fill={isDark ? DARK_TEXT_COLOR: LIGHT_TEXT_COLOR}
-      >{`処理数 : ${index} / ${sortData.length - 1}`}</text>
-      <text
-        x={SVG_TEXT_X}
-        y={SVG_TEXT_Y + 30}
-        textAnchor="middle"
-        alignmentBaseline="middle"
-        fontSize="20"
-        fill={isDark ? DARK_TEXT_COLOR: LIGHT_TEXT_COLOR}
-      >
-        {`status: ${sortData[index].type}`}
-      </text>
+      {svgText}
       {svgComponent}
     </svg>
   );

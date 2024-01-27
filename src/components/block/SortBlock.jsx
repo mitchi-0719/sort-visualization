@@ -9,9 +9,8 @@ import { ChangeDialog } from "./ChangeDialog";
 import {
   DARK_BLOCK_BORDER_COLOR,
   LIGHT_BLOCK_BORDER_COLOR,
-  STRIKING_RECT_COLOR,
 } from "../../styles/style";
-import { Context } from "../../context/context";
+import { darkModeContext } from "../../context/DarkModeContext";
 
 export const SortBlock = ({
   x,
@@ -23,13 +22,12 @@ export const SortBlock = ({
   setArray,
   idx,
   running,
-  setTrigger,
 }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
-  const { isDark } = useContext(Context);
+  const { isDark } = useContext(darkModeContext);
 
   const handleOpen = () => {
-    setDialogOpen(true);
+    running || setDialogOpen(true);
   };
 
   return (
@@ -64,16 +62,13 @@ export const SortBlock = ({
       >
         {value}
       </text>
-      {!running && (
-        <ChangeDialog
-          value={value}
-          dialogOpen={dialogOpen}
-          setDialogOpen={setDialogOpen}
-          idx={idx}
-          setArray={setArray}
-          setTrigger={setTrigger}
-        />
-      )}
+      <ChangeDialog
+        value={value}
+        dialogOpen={dialogOpen}
+        setDialogOpen={setDialogOpen}
+        idx={idx}
+        setArray={setArray}
+      />
     </g>
   );
 };

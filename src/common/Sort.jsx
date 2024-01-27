@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
-import { SortSetting } from "../components/sort/SortSetting";
-import { SortButton } from "../components/sort/SortButton";
+import { SortButton } from "./SortButton";
 import { generateColors } from "../feature/generateColors";
 import { useWindowSize } from "../feature/useWindowSize";
 import { useEffect, useState } from "react";
@@ -8,15 +7,10 @@ import { calcCoordinates } from "../feature/calcCoordinates";
 import { ErrorPage } from "./ErrorPage";
 import { BubbleSort } from "../components/sort/BubbleSort";
 import { SelectionSort } from "../components/sort/SelectionSort";
+import { apiFetch } from "../api/apiFetch";
+import { Loading } from "./Loading";
 
-export const Sort = ({
-  array,
-  setArray,
-  sortType,
-  order,
-  isRunning,
-  setIsRunning,
-}) => {
+export const Sort = ({ array, setArray, sortType, order }) => {
   const paleColors = generateColors(array.length);
   const [width, height] = useWindowSize();
   const [coordinates, setCoordinates] = useState(
@@ -29,25 +23,31 @@ export const Sort = ({
   const [sortData, setSortData] = useState([]);
 
   useEffect(() => {
+    setSortIndex(0);
+    (async () => {
+      const res = await apiFetch(sortType, order === "asc", array);
+      setSortData(res.API_Response.sort_log.log);
+    })();
+  }, [array, sortType, order]);
+
+  useEffect(() => {
     setCoordinates(calcCoordinates(array.length, width, height));
-  }, [width, height, array]);
+    setCoordinateIndex(
+      Array.from({ length: array.length }, (_, index) => index)
+    );
+  }, [width, height, array, sortData]);
 
   return (
     <Box width="80vw" display="flex" flexDirection="column">
       <Box height="90%" sx={{ transform: "scale(1, -1)" }}>
-        {!isRunning ? (
-          <SortSetting
-            array={array}
-            setArray={setArray}
-            paleColors={paleColors}
-            coordinates={coordinates}
-          />
+        {sortData.length === 0 ? (
+          <Loading />
         ) : (
           <>
             {sortType === "bubble" ? (
               <BubbleSort
                 array={array}
-                index={sortIndex}
+                setArray={setArray}
                 paleColors={paleColors}
                 sortIndex={sortIndex}
                 coordinates={coordinates}
@@ -59,7 +59,7 @@ export const Sort = ({
             ) : sortType === "selection" ? (
               <SelectionSort
                 array={array}
-                index={sortIndex}
+                setArray={setArray}
                 paleColors={paleColors}
                 sortIndex={sortIndex}
                 coordinates={coordinates}
@@ -77,15 +77,11 @@ export const Sort = ({
       </Box>
       <Box height="10%">
         <SortButton
-          sortType={sortType}
-          isAsc={order === "asc"}
-          array={array}
+          arrayLength={array.length}
           setArray={setArray}
           sortIndex={sortIndex}
           setSortIndex={setSortIndex}
-          isRunning={isRunning}
-          setIsRunning={setIsRunning}
-          sortDataLength={isRunning ? sortData.length : 0}
+          sortDataLength={sortData.length}
           setSortData={setSortData}
           setCoordinateIndex={setCoordinateIndex}
         />

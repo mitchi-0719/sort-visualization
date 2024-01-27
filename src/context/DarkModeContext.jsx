@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { Context } from "./context";
+import { createContext } from "react";
 
-export const ContextProvider = ({ children }) => {
+export const darkModeContext = createContext("");
+
+export const DarkModeContextProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(false);
   const contextValue = {
     isDark,
@@ -25,5 +27,5 @@ export const ContextProvider = ({ children }) => {
     };
   }, []);
 
-  return <Context.Provider value={contextValue}>{children}</Context.Provider>;
+  return <darkModeContext.Provider value={contextValue}>{children}</darkModeContext.Provider>;
 };
