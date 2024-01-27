@@ -108,7 +108,7 @@ export const SelectionSort = ({
   }, [isDark, sortIndex, coordinates]);
 
   return (
-    <svg width="80vw" height="70vh">
+    <svg width={windowSIze.width * 0.8} height={windowSIze.height * 0.7}>
       {svgText}
       {svgComponent}
     </svg>

@@ -7,9 +7,11 @@ import {
 } from "../styles/style";
 import { useContext } from "react";
 import { darkModeContext } from "../context/DarkModeContext";
+import { useWindowSize } from "../feature/useWindowSize";
 
 export const Footer = () => {
   const { isDark } = useContext(darkModeContext);
+  const windowSize = useWindowSize();
 
   return (
     <Box
@@ -24,6 +26,7 @@ export const Footer = () => {
       flexShrink="0"
       boxShadow="0px -3px 5px 0px rgba(0,0,0,0.5)"
       zIndex={1000}
+      height={windowSize.height * 0.1}
     >
       <p style={{ color: isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR }}>
         作成者:佐久間道仁 (学籍番号 5422017)

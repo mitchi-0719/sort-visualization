@@ -8,9 +8,12 @@ import {
 import { DarkMode, LightMode } from "@mui/icons-material";
 import { useContext } from "react";
 import { darkModeContext } from "../context/DarkModeContext";
+import { useWindowSize } from "../feature/useWindowSize";
 
 export const Header = () => {
   const { isDark, setIsDark } = useContext(darkModeContext);
+  const windowSize = useWindowSize();
+
   return (
     <Box
       display="flex"
@@ -20,6 +23,7 @@ export const Header = () => {
       bgcolor={isDark ? DARK_ACCENT_COLOR : LIGHT_ACCENT_COLOR}
       boxShadow="0px 4px 5px 0px rgba(0,0,0,0.5)"
       zIndex={1000}
+      height={windowSize.height * 0.15}
     >
       <h1
         style={{
