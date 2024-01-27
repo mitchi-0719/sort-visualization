@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { swap } from "../../feature/swap";
 import { SVG_TEXT_X, SVG_TEXT_Y } from "../../constants/svgTextConst";
 import { SortBlock } from "../block/SortBlock";
@@ -14,8 +14,9 @@ import { darkModeContext } from "../../context/DarkModeContext";
 
 export const SelectionSort = ({
   array,
+  setArray,
   paleColors,
-  index,
+  sortIndex,
   coordinates,
   setCoordinates,
   sortData,
@@ -24,25 +25,53 @@ export const SelectionSort = ({
   order,
 }) => {
   const [svgComponent, setSvgComponent] = useState(null);
+  const [svgText, setSvgText] = useState(null);
   const { isDark } = useContext(darkModeContext);
 
   useEffect(() => {
-    sortData[index].type === "swap" &&
+    sortData[sortIndex].type === "swap" &&
       swap(
         coordinates,
         setCoordinates,
-        sortData[index].index1,
-        sortData[index].hold,
+        sortData[sortIndex].index1,
+        sortData[sortIndex].hold,
         coordinateIndex,
         setCoordinateIndex
       );
-  }, [index]);
+  }, [sortIndex]);
+
+  useEffect(() => {
+    setSvgText(() => {
+      return (
+        <>
+          <text
+            x={SVG_TEXT_X}
+            y={SVG_TEXT_Y}
+            textAnchor="middle"
+            alignmentBaseline="middle"
+            fontSize="20"
+            fill={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}
+          >{`処理数 : ${sortIndex} / ${sortData.length - 1}`}</text>
+          <text
+            x={SVG_TEXT_X}
+            y={SVG_TEXT_Y + 30}
+            textAnchor="middle"
+            alignmentBaseline="middle"
+            fontSize="20"
+            fill={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}
+          >
+            {`status: ${sortData[sortIndex].type}`}
+          </text>
+        </>
+      );
+    });
+  }, [isDark, sortIndex]);
 
   useEffect(() => {
     setSvgComponent(() => {
       return array.map((value, idx) => (
-        <>
-          {idx === coordinateIndex[sortData[index].hold] && (
+        <React.Fragment key={idx}>
+          {idx === coordinateIndex[sortData[sortIndex].hold] && (
             <text
               x={coordinates[idx].x + RECT_WIDTH / 2}
               y={SELECTION_MAX_TEXT_Y}
@@ -60,42 +89,27 @@ export const SelectionSort = ({
             y={coordinates[idx].y}
             color={paleColors[idx]}
             isStriking={
-              idx === coordinateIndex[sortData[index].index1] ||
-              idx === coordinateIndex[sortData[index].hold]
+              idx === coordinateIndex[sortData[sortIndex].index1] ||
+              idx === coordinateIndex[sortData[sortIndex].hold]
             }
             strikingColor={
-              idx === coordinateIndex[sortData[index].hold]
+              idx === coordinateIndex[sortData[sortIndex].hold]
                 ? SELECTION_STRIKING_RECT_COLOR
                 : STRIKING_RECT_COLOR
             }
             value={value}
-            running={true}
+            running={sortIndex !== 0}
+            setArray={setArray}
+            idx={idx}
           />
-        </>
+        </React.Fragment>
       ));
     });
-  }, [index, coordinates]);
+  }, [isDark, sortIndex, coordinates]);
 
   return (
-    <svg width="80vw" height="70vh" key={array}>
-      <text
-        x={SVG_TEXT_X}
-        y={SVG_TEXT_Y}
-        textAnchor="middle"
-        alignmentBaseline="middle"
-        fontSize="20"
-        fill="#333"
-      >{`処理数 : ${index} / ${sortData.length - 1}`}</text>
-      <text
-        x={SVG_TEXT_X}
-        y={SVG_TEXT_Y + 30}
-        textAnchor="middle"
-        alignmentBaseline="middle"
-        fontSize="20"
-        fill="#333"
-      >
-        {`status: ${sortData[index].type}`}
-      </text>
+    <svg width="80vw" height="70vh">
+      {svgText}
       {svgComponent}
     </svg>
   );

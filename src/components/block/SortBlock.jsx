@@ -22,13 +22,12 @@ export const SortBlock = ({
   setArray,
   idx,
   running,
-  setTrigger,
 }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const { isDark } = useContext(darkModeContext);
 
   const handleOpen = () => {
-    setDialogOpen(true);
+    running || setDialogOpen(true);
   };
 
   return (
@@ -63,16 +62,13 @@ export const SortBlock = ({
       >
         {value}
       </text>
-      {!running && (
-        <ChangeDialog
-          value={value}
-          dialogOpen={dialogOpen}
-          setDialogOpen={setDialogOpen}
-          idx={idx}
-          setArray={setArray}
-          setTrigger={setTrigger}
-        />
-      )}
+      <ChangeDialog
+        value={value}
+        dialogOpen={dialogOpen}
+        setDialogOpen={setDialogOpen}
+        idx={idx}
+        setArray={setArray}
+      />
     </g>
   );
 };

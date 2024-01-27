@@ -10,7 +10,7 @@ import {
 import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material/";
 import Select from "react-select";
 import { getRandArray } from "../feature/getRandArray";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { darkModeContext } from "../context/DarkModeContext";
 import {
   DARK_SIDE_BG_COLOR,
@@ -21,6 +21,7 @@ import {
   LIGHT_TEXT_COLOR,
 } from "../styles/style";
 import { MAX_NUMBER, MIN_NUMBER } from "../constants/number";
+import { autoModeContext } from "../context/AutoModeContext";
 
 export const Setting = ({
   array,
@@ -28,11 +29,10 @@ export const Setting = ({
   order,
   setOrder,
   setArray,
-  isRunning,
-  arrayLength,
-  setArrayLength,
 }) => {
   const { isDark } = useContext(darkModeContext);
+  const { autoRunning } = useContext(autoModeContext);
+  const [arrayLength, setArrayLength] = useState(array.length);
 
   const options = [
     { value: "bubble", label: "Bubble sort (交換ソート)" },
@@ -59,11 +59,15 @@ export const Setting = ({
   };
 
   useEffect(() => {
+    setArrayLength(array.length);
+  }, [array]);
+
+  useEffect(() => {
     if (arrayLength < array.length) {
-      setArray(array.slice(0, arrayLength));
+      setArray((prev) => prev.slice(0, arrayLength));
     } else if (arrayLength > array.length) {
       const randNum = generateRandNum();
-      setArray([...array, randNum]);
+      setArray((prev) => [...prev, randNum]);
     }
   }, [arrayLength]);
 
@@ -91,7 +95,7 @@ export const Setting = ({
         options={options}
         isMulti={false}
         onChange={(e) => setSortType(e.value)}
-        isDisabled={isRunning}
+        isDisabled={autoRunning}
       />
       <Typography color={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}>
         配列要素数
@@ -100,7 +104,7 @@ export const Setting = ({
         <Button
           variant="outlined"
           onClick={() => handleSpinButtonClick(-1)}
-          disabled={isRunning || arrayLength === 2}
+          disabled={autoRunning || arrayLength === 2}
         >
           <RemoveCircleOutline />
         </Button>
@@ -114,7 +118,7 @@ export const Setting = ({
         <Button
           variant="outlined"
           onClick={() => handleSpinButtonClick(1)}
-          disabled={isRunning || arrayLength === 10}
+          disabled={autoRunning || arrayLength === 10}
         >
           <AddCircleOutline />
         </Button>
@@ -136,7 +140,7 @@ export const Setting = ({
                 }
                 onChange={(e) => setOrder(e.target.value)}
                 checked={order === val.value}
-                disabled={isRunning}
+                disabled={autoRunning}
               />
             );
           })}
@@ -146,21 +150,21 @@ export const Setting = ({
       <Box rowGap={1} display="flex" flexDirection="column">
         <Button
           variant="contained"
-          disabled={isRunning}
+          disabled={autoRunning}
           onClick={() => setArray(getRandArray(0, arrayLength))}
         >
           ランダム配列生成
         </Button>
         <Button
           variant="contained"
-          disabled={isRunning}
+          disabled={autoRunning}
           onClick={() => setArray(getRandArray(-1, arrayLength))}
         >
           ランダム昇順生成
         </Button>
         <Button
           variant="contained"
-          disabled={isRunning}
+          disabled={autoRunning}
           onClick={() => setArray(getRandArray(1, arrayLength))}
         >
           ランダム降順生成

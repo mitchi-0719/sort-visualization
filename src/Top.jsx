@@ -5,6 +5,7 @@ import { Box, ThemeProvider, createTheme } from "@mui/material";
 import { DARK_BG_COLOR, LIGHT_BG_COLOR } from "./styles/style";
 import { useContext } from "react";
 import { darkModeContext } from "./context/DarkModeContext";
+import { AutoModeContextProvider } from "./context/AutoModeContext";
 
 export const Top = () => {
   const { isDark } = useContext(darkModeContext);
@@ -16,17 +17,19 @@ export const Top = () => {
   });
 
   return (
-    <ThemeProvider theme={theme}>
-      <Box
-        display="flex"
-        flexDirection="column"
-        height="100vh"
-        bgcolor={isDark ? DARK_BG_COLOR : LIGHT_BG_COLOR}
-      >
-        <Header />
-        <Main />
-        <Footer />
-      </Box>
-    </ThemeProvider>
+    <AutoModeContextProvider>
+      <ThemeProvider theme={theme}>
+        <Box
+          display="flex"
+          flexDirection="column"
+          height="100vh"
+          bgcolor={isDark ? DARK_BG_COLOR : LIGHT_BG_COLOR}
+        >
+          <Header />
+          <Main />
+          <Footer />
+        </Box>
+      </ThemeProvider>
+    </AutoModeContextProvider>
   );
 };
