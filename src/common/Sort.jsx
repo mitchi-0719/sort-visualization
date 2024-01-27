@@ -12,7 +12,7 @@ import { Loading } from "./Loading";
 
 export const Sort = ({ array, setArray, sortType, order }) => {
   const paleColors = generateColors(array.length);
-  const [width, height] = useWindowSize();
+  const windowSIze = useWindowSize();
   const [coordinates, setCoordinates] = useState(
     Array(array.length).fill({ x: 0, y: 0 })
   );
@@ -31,11 +31,13 @@ export const Sort = ({ array, setArray, sortType, order }) => {
   }, [array, sortType, order]);
 
   useEffect(() => {
-    setCoordinates(calcCoordinates(array.length, width, height));
+    setCoordinates(
+      calcCoordinates(array.length, windowSIze.width, windowSIze.height)
+    );
     setCoordinateIndex(
       Array.from({ length: array.length }, (_, index) => index)
     );
-  }, [width, height, array, sortData]);
+  }, [windowSIze.width, windowSIze.height, array, sortData]);
 
   return (
     <Box width="80vw" display="flex" flexDirection="column">
