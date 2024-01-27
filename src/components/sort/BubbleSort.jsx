@@ -86,7 +86,7 @@ export const BubbleSort = ({
   }, [sortIndex, coordinates]);
 
   return (
-    <svg width="80vw" height="70vh" bgcolor={"#ffd900"}>
+    <svg width="80vw" height="70vh" style={{background: "#ffd900"}}>
       {svgText}
       {svgComponent}
     </svg>
