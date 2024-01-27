@@ -22,7 +22,7 @@ export const SortButton = ({
 
   const handleReset = () => {
     setSortIndex(0);
-    setArray(getRandArray(0, arrayLength));
+    setArray(getRandArray(arrayLength));
     setSortData([]);
     setCoordinateIndex(
       Array.from({ length: arrayLength }, (_, index) => index)

@@ -10,7 +10,7 @@ export const Main = () => {
   const [order, setOrder] = useState("asc");
 
   useEffect(() => {
-    setArray(getRandArray(0, array.length));
+    setArray(getRandArray(array.length));
   }, []);
 
   return (

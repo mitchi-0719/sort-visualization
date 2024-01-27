@@ -151,23 +151,9 @@ export const Setting = ({
         <Button
           variant="contained"
           disabled={autoRunning}
-          onClick={() => setArray(getRandArray(0, arrayLength))}
+          onClick={() => setArray(getRandArray(arrayLength))}
         >
           ランダム配列生成
-        </Button>
-        <Button
-          variant="contained"
-          disabled={autoRunning}
-          onClick={() => setArray(getRandArray(-1, arrayLength))}
-        >
-          ランダム昇順生成
-        </Button>
-        <Button
-          variant="contained"
-          disabled={autoRunning}
-          onClick={() => setArray(getRandArray(1, arrayLength))}
-        >
-          ランダム降順生成
         </Button>
       </Box>
     </Box>
