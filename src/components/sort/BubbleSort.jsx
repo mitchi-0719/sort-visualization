@@ -8,6 +8,7 @@ import {
   STRIKING_RECT_COLOR,
 } from "../../styles/style";
 import { darkModeContext } from "../../context/DarkModeContext";
+import { useWindowSize } from "../../feature/useWindowSize";
 
 export const BubbleSort = ({
   array,
@@ -23,6 +24,7 @@ export const BubbleSort = ({
   const [svgComponent, setSvgComponent] = useState(null);
   const [svgText, setSvgText] = useState(null);
   const { isDark } = useContext(darkModeContext);
+  const windowSIze = useWindowSize();
 
   useEffect(() => {
     sortData[sortIndex].type === "swap" &&
@@ -86,7 +88,11 @@ export const BubbleSort = ({
   }, [sortIndex, coordinates]);
 
   return (
-    <svg width="80vw" height="70vh" style={{background: "#ffd900"}}>
+    <svg
+      width={windowSIze.width * 0.8}
+      height={windowSIze.height * 0.7}
+      style={{ background: "#ffd900" }}
+    >
       {svgText}
       {svgComponent}
     </svg>
