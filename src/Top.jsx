@@ -4,10 +4,10 @@ import { Footer } from "./common/Footer";
 import { Box, ThemeProvider, createTheme } from "@mui/material";
 import { DARK_BG_COLOR, LIGHT_BG_COLOR } from "./styles/style";
 import { useContext } from "react";
-import { Context } from "./context/context";
+import { darkModeContext } from "./context/DarkModeContext";
 
 export const Top = () => {
-  const { isDark } = useContext(Context);
+  const { isDark } = useContext(darkModeContext);
 
   const theme = createTheme({
     palette: {

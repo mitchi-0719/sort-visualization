@@ -6,10 +6,10 @@ import {
   LIGHT_TEXT_COLOR,
 } from "../styles/style";
 import { useContext } from "react";
-import { Context } from "../context/context";
+import { darkModeContext } from "../context/DarkModeContext";
 
 export const Footer = () => {
-  const { isDark } = useContext(Context);
+  const { isDark } = useContext(darkModeContext);
 
   return (
     <Box

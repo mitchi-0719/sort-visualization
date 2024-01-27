@@ -10,7 +10,7 @@ import {
   STRIKING_RECT_COLOR,
 } from "../../styles/style";
 import { RECT_WIDTH } from "../../constants/blockConst";
-import { Context } from "../../context/context";
+import { darkModeContext } from "../../context/DarkModeContext";
 
 export const SelectionSort = ({
   array,
@@ -24,7 +24,7 @@ export const SelectionSort = ({
   order,
 }) => {
   const [svgComponent, setSvgComponent] = useState(null);
-  const { isDark } = useContext(Context);
+  const { isDark } = useContext(darkModeContext);
 
   useEffect(() => {
     sortData[index].type === "swap" &&
@@ -77,7 +77,7 @@ export const SelectionSort = ({
   }, [index, coordinates]);
 
   return (
-    <svg width="80vw" height="70vh">
+    <svg width="80vw" height="70vh" key={array}>
       <text
         x={SVG_TEXT_X}
         y={SVG_TEXT_Y}

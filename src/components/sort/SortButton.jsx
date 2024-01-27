@@ -68,7 +68,11 @@ export const SortButton = ({
         Next
         <PlayCircle />
       </Button>
-      <Button variant="contained" disabled={!isRunning || autoRunning} onClick={handleReset}>
+      <Button
+        variant="contained"
+        disabled={!isRunning || autoRunning}
+        onClick={handleReset}
+      >
         End
       </Button>
     </Box>

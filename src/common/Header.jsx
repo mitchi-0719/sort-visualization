@@ -7,10 +7,10 @@ import {
 } from "../styles/style";
 import { DarkMode, LightMode } from "@mui/icons-material";
 import { useContext } from "react";
-import { Context } from "../context/context";
+import { darkModeContext } from "../context/DarkModeContext";
 
 export const Header = () => {
-  const { isDark, setIsDark } = useContext(Context);
+  const { isDark, setIsDark } = useContext(darkModeContext);
   return (
     <Box
       display="flex"

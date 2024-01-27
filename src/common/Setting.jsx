@@ -11,7 +11,7 @@ import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material/";
 import Select from "react-select";
 import { getRandArray } from "../feature/getRandArray";
 import { useContext, useEffect } from "react";
-import { Context } from "../context/context";
+import { darkModeContext } from "../context/DarkModeContext";
 import {
   DARK_SIDE_BG_COLOR,
   DARK_SIDE_BORDER_COLOR,
@@ -32,7 +32,7 @@ export const Setting = ({
   arrayLength,
   setArrayLength,
 }) => {
-  const { isDark } = useContext(Context);
+  const { isDark } = useContext(darkModeContext);
 
   const options = [
     { value: "bubble", label: "Bubble sort (交換ソート)" },

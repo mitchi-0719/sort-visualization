@@ -1,11 +1,11 @@
 import { Top } from "./Top";
-import { ContextProvider } from "./context/contextProvider";
+import { DarkModeContextProvider } from "./context/DarkModeContext";
 
 function App() {
   return (
-    <ContextProvider>
+    <DarkModeContextProvider>
       <Top />
-    </ContextProvider>
+    </DarkModeContextProvider>
   );
 }
 
