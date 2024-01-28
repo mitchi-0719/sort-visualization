@@ -2,28 +2,28 @@ import { Box, Button } from "@mui/material";
 import {
   DARK_ACCENT_COLOR,
   DARK_TEXT_COLOR,
+  HEADER_HEIGHT,
   LIGHT_ACCENT_COLOR,
   LIGHT_TEXT_COLOR,
 } from "../styles/style";
 import { DarkMode, LightMode } from "@mui/icons-material";
 import { useContext } from "react";
 import { darkModeContext } from "../context/DarkModeContext";
-import { useWindowSize } from "../feature/useWindowSize";
 
 export const Header = () => {
   const { isDark, setIsDark } = useContext(darkModeContext);
-  const windowSize = useWindowSize();
 
   return (
     <Box
       display="flex"
       justifyContent="space-between"
+      alignItems="center"
       flex={1}
       p="1%"
       bgcolor={isDark ? DARK_ACCENT_COLOR : LIGHT_ACCENT_COLOR}
       boxShadow="0px 4px 5px 0px rgba(0,0,0,0.5)"
       zIndex={1000}
-      height={windowSize.height * 0.15}
+      height={HEADER_HEIGHT}
     >
       <h1
         style={{

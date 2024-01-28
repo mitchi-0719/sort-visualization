@@ -9,6 +9,7 @@ import {
 } from "../../styles/style";
 import { darkModeContext } from "../../context/DarkModeContext";
 import { useWindowSize } from "../../feature/useWindowSize";
+import { useIsWideSize } from "../../feature/useIsWideSize";
 
 export const BubbleSort = ({
   array,
@@ -25,6 +26,7 @@ export const BubbleSort = ({
   const [svgText, setSvgText] = useState(null);
   const { isDark } = useContext(darkModeContext);
   const windowSIze = useWindowSize();
+  const isWideSize = useIsWideSize();
 
   useEffect(() => {
     sortData[sortIndex].type === "swap" &&
@@ -88,7 +90,10 @@ export const BubbleSort = ({
   }, [sortIndex, coordinates]);
 
   return (
-    <svg width={windowSIze.width * 0.8} height={windowSIze.height * 0.7}>
+    <svg
+      width={windowSIze.width * (isWideSize ? 0.8 : 1)}
+      height={windowSIze.height * (isWideSize ? 0.7 : 0.55)}
+    >
       {svgText}
       {svgComponent}
     </svg>

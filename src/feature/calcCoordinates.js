@@ -1,8 +1,8 @@
 import { RECT_WIDTH, RECT_HEIGHT } from "../constants/blockConst";
 
-export const calcCoordinates = (length, width, height) => {
-  const areaWidth = width * 0.8;
-  const areaHeight = height * 0.7;
+export const calcCoordinates = (length, width, height, isWide) => {
+  const areaWidth = width * (isWide ? 0.8 : 1);
+  const areaHeight = height * (isWide ? 0.7 : 0.55);
   const verticalSpacing = 20;
   const topMargin = areaHeight / 5;
   const leftMargin = (areaWidth - length * (RECT_WIDTH + verticalSpacing)) / 2;

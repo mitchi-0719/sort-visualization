@@ -12,6 +12,7 @@ import {
 import { RECT_WIDTH } from "../../constants/blockConst";
 import { darkModeContext } from "../../context/DarkModeContext";
 import { useWindowSize } from "../../feature/useWindowSize";
+import { useIsWideSize } from "../../feature/useIsWideSize";
 
 export const SelectionSort = ({
   array,
@@ -29,6 +30,7 @@ export const SelectionSort = ({
   const [svgText, setSvgText] = useState(null);
   const { isDark } = useContext(darkModeContext);
   const windowSIze = useWindowSize();
+  const isWideSize = useIsWideSize();
 
   useEffect(() => {
     sortData[sortIndex].type === "swap" &&
@@ -110,7 +112,10 @@ export const SelectionSort = ({
   }, [isDark, sortIndex, coordinates]);
 
   return (
-    <svg width={windowSIze.width * 0.8} height={windowSIze.height * 0.7}>
+    <svg
+      width={windowSIze.height * (isWideSize ? 0.8 : 1)}
+      height={windowSIze.height * (isWideSize ? 0.7 : 0.55)}
+    >
       {svgText}
       {svgComponent}
     </svg>

@@ -9,10 +9,10 @@ import { BubbleSort } from "../components/sort/BubbleSort";
 import { SelectionSort } from "../components/sort/SelectionSort";
 import { apiFetch } from "../api/apiFetch";
 import { Loading } from "./Loading";
+import { useIsWideSize } from "../feature/useIsWideSize";
 
 export const Sort = ({ array, setArray, sortType, order }) => {
   const paleColors = generateColors(array.length);
-  const windowSIze = useWindowSize();
   const [coordinates, setCoordinates] = useState(
     Array(array.length).fill({ x: 0, y: 0 })
   );
@@ -21,6 +21,8 @@ export const Sort = ({ array, setArray, sortType, order }) => {
   );
   const [sortIndex, setSortIndex] = useState(0);
   const [sortData, setSortData] = useState([]);
+  const windowSIze = useWindowSize();
+  const isWideSize = useIsWideSize();
 
   useEffect(() => {
     setSortIndex(0);
@@ -32,7 +34,12 @@ export const Sort = ({ array, setArray, sortType, order }) => {
 
   useEffect(() => {
     setCoordinates(
-      calcCoordinates(array.length, windowSIze.width, windowSIze.height)
+      calcCoordinates(
+        array.length,
+        windowSIze.width,
+        windowSIze.height,
+        isWideSize
+      )
     );
     setCoordinateIndex(
       Array.from({ length: array.length }, (_, index) => index)
@@ -40,8 +47,15 @@ export const Sort = ({ array, setArray, sortType, order }) => {
   }, [windowSIze.width, windowSIze.height, array, sortData]);
 
   return (
-    <Box width="80vw" display="flex" flexDirection="column">
-      <Box height="90%" sx={{ transform: "scale(1, -1)" }}>
+    <Box
+      width={isWideSize ? "80vw" : "100vw"}
+      display="flex"
+      flexDirection="column"
+    >
+      <Box
+        height={windowSIze.height * (isWideSize ? 0.7 : 0.55)}
+        sx={{ transform: "scale(1, -1)" }}
+      >
         {sortData.length === 0 ? (
           <Loading />
         ) : (
@@ -77,7 +91,7 @@ export const Sort = ({ array, setArray, sortType, order }) => {
           </>
         )}
       </Box>
-      <Box height="10%">
+      <Box py={0.5}>
         <SortButton
           arrayLength={array.length}
           setArray={setArray}

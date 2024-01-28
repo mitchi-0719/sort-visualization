@@ -18,6 +18,11 @@ export const DARK_SIDE_BORDER_COLOR = "#42a5f5";
 
 export const STRIKING_RECT_COLOR = "#989898";
 
+// size
+export const HEADER_HEIGHT = 80;
+export const FOOTER_HEIGHT = 55;
+
 // selection sort
 export const SELECTION_STRIKING_RECT_COLOR = "#ffd900";
 export const SELECTION_MAX_TEXT_Y = 20;
+

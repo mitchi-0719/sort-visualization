@@ -22,11 +22,13 @@ import {
 } from "../styles/style";
 import { MAX_NUMBER, MIN_NUMBER } from "../constants/number";
 import { autoModeContext } from "../context/AutoModeContext";
+import { useIsWideSize } from "../feature/useIsWideSize";
 
 export const Setting = ({ array, setSortType, order, setOrder, setArray }) => {
   const { isDark } = useContext(darkModeContext);
   const { autoRunning, autoSpeed, setAutoSpeed } = useContext(autoModeContext);
   const [arrayLength, setArrayLength] = useState(array.length);
+  const isWideSize = useIsWideSize();
 
   const options = [
     { value: "bubble", label: "Bubble sort (交換ソート)" },
@@ -69,8 +71,7 @@ export const Setting = ({ array, setSortType, order, setOrder, setArray }) => {
     <Box
       display="flex"
       flexDirection="column"
-      justifyContent="space-around"
-      width="20vw"
+      width={isWideSize ? "20vw" : "100vw"}
       border={3}
       borderColor={isDark ? DARK_SIDE_BORDER_COLOR : LIGHT_SIDE_BORDER_COLOR}
       rowGap={1}
@@ -81,104 +82,133 @@ export const Setting = ({ array, setSortType, order, setOrder, setArray }) => {
       <Typography
         variant="h6"
         color={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}
+        my={1}
       >
         ソート設定
       </Typography>
 
-      <Select
-        defaultValue={{ value: "bubble", label: "Bubble sort (交換ソート)" }}
-        options={options}
-        isMulti={false}
-        onChange={(e) => setSortType(e.value)}
-        isDisabled={autoRunning}
-      />
+      <Box
+        display="flex"
+        flexDirection={isWideSize ? "column" : "row"}
+        justifyContent="space-between"
+        height="100%"
+      >
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="space-between"
+          height="30%"
+          rowGap={1}
+        >
+          <Select
+            defaultValue={{
+              value: "bubble",
+              label: "Bubble sort (交換ソート)",
+            }}
+            options={options}
+            isMulti={false}
+            onChange={(e) => setSortType(e.value)}
+            isDisabled={autoRunning}
+          />
+          <Box>
+            <Typography color={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}>
+              配列要素数
+            </Typography>
+            <Box display="flex">
+              <Button
+                variant="outlined"
+                onClick={() => handleSpinButtonClick(-1, setArrayLength)}
+                disabled={autoRunning || arrayLength === 2}
+              >
+                <RemoveCircleOutline />
+              </Button>
+              <Typography
+                variant="h5"
+                style={{ margin: "auto 16px" }}
+                color={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}
+              >
+                {arrayLength}
+              </Typography>
+              <Button
+                variant="outlined"
+                onClick={() => handleSpinButtonClick(1, setArrayLength)}
+                disabled={autoRunning || arrayLength === 10}
+              >
+                <AddCircleOutline />
+              </Button>
+            </Box>
+          </Box>
+        </Box>
 
-      <Typography color={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}>
-        配列要素数
-      </Typography>
-      <Box display="flex">
-        <Button
-          variant="outlined"
-          onClick={() => handleSpinButtonClick(-1, setArrayLength)}
-          disabled={autoRunning || arrayLength === 2}
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="space-between"
+          height="40%"
+          rowGap={1}
         >
-          <RemoveCircleOutline />
-        </Button>
-        <Typography
-          variant="h5"
-          style={{ margin: "auto 16px" }}
-          color={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}
-        >
-          {arrayLength}
-        </Typography>
-        <Button
-          variant="outlined"
-          onClick={() => handleSpinButtonClick(1, setArrayLength)}
-          disabled={autoRunning || arrayLength === 10}
-        >
-          <AddCircleOutline />
-        </Button>
-      </Box>
+          <FormControl>
+            <RadioGroup row>
+              {radioValues.map((val, index) => {
+                return (
+                  <FormControlLabel
+                    key={index}
+                    value={val.value}
+                    control={<Radio />}
+                    label={
+                      <Typography
+                        color={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}
+                      >
+                        {val.label}
+                      </Typography>
+                    }
+                    onChange={(e) => setOrder(e.target.value)}
+                    checked={order === val.value}
+                    disabled={autoRunning}
+                  />
+                );
+              })}
+            </RadioGroup>
+          </FormControl>
+          <Box>
+            <Typography color={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}>
+              オートモード速度
+            </Typography>
+            <Box display="flex">
+              <Button
+                variant="outlined"
+                onClick={() => handleSpinButtonClick(-50, setAutoSpeed)}
+                disabled={autoRunning || autoSpeed === 300}
+              >
+                <RemoveCircleOutline />
+              </Button>
+              <Typography
+                variant="h5"
+                style={{ margin: "auto 16px" }}
+                color={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}
+              >
+                {`${autoSpeed}ms`}
+              </Typography>
+              <Button
+                variant="outlined"
+                onClick={() => handleSpinButtonClick(50, setAutoSpeed)}
+                disabled={autoRunning || autoSpeed === 600}
+              >
+                <AddCircleOutline />
+              </Button>
+            </Box>
+          </Box>
+        </Box>
 
-      <FormControl>
-        <RadioGroup row>
-          {radioValues.map((val, index) => {
-            return (
-              <FormControlLabel
-                key={index}
-                value={val.value}
-                control={<Radio />}
-                label={
-                  <Typography
-                    color={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}
-                  >
-                    {val.label}
-                  </Typography>
-                }
-                onChange={(e) => setOrder(e.target.value)}
-                checked={order === val.value}
-                disabled={autoRunning}
-              />
-            );
-          })}
-        </RadioGroup>
-      </FormControl>
-
-      <Typography color={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}>
-        オートモード速度
-      </Typography>
-      <Box display="flex">
-        <Button
-          variant="outlined"
-          onClick={() => handleSpinButtonClick(-50, setAutoSpeed)}
-          disabled={autoRunning || autoSpeed === 300}
-        >
-          <RemoveCircleOutline />
-        </Button>
-        <Typography
-          variant="h5"
-          style={{ margin: "auto 16px" }}
-          color={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}
-        >
-          {`${autoSpeed}ms`}
-        </Typography>
-        <Button
-          variant="outlined"
-          onClick={() => handleSpinButtonClick(50, setAutoSpeed)}
-          disabled={autoRunning || autoSpeed === 600}
-        >
-          <AddCircleOutline />
-        </Button>
-      </Box>
-
-      <Box rowGap={1} display="flex" flexDirection="column">
-        <Button
-          variant="contained"
-          disabled={autoRunning}
-          onClick={() => setArray(getRandArray(arrayLength))}
-        >
-          ランダム配列生成
-        </Button>
+        <Box rowGap={1} display="flex" flexDirection="column">
+          <Button
+            variant="contained"
+            disabled={autoRunning}
+            onClick={() => setArray(getRandArray(arrayLength))}
+          >
+            ランダム配列生成
+          </Button>
+        </Box>
       </Box>
     </Box>
   );
