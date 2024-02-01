@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { swap } from "../../feature/swap";
-import { SVG_TEXT_X, SVG_TEXT_Y } from "../../constants/svgTextConst";
 import { SortBlock } from "../block/SortBlock";
 import {
   DARK_TEXT_COLOR,
@@ -27,7 +26,6 @@ export const SelectionSort = ({
   order,
 }) => {
   const [svgComponent, setSvgComponent] = useState(null);
-  const [svgText, setSvgText] = useState(null);
   const { isDark } = useContext(darkModeContext);
   const windowSIze = useWindowSize();
   const isWideSize = useIsWideSize();
@@ -45,33 +43,6 @@ export const SelectionSort = ({
   }, [sortIndex]);
 
   useEffect(() => {
-    setSvgText(() => {
-      return (
-        <>
-          <text
-            x={SVG_TEXT_X}
-            y={SVG_TEXT_Y}
-            textAnchor="middle"
-            alignmentBaseline="middle"
-            fontSize="20"
-            fill={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}
-          >{`処理数 : ${sortIndex} / ${sortData.length - 1}`}</text>
-          <text
-            x={SVG_TEXT_X}
-            y={SVG_TEXT_Y + 30}
-            textAnchor="middle"
-            alignmentBaseline="middle"
-            fontSize="20"
-            fill={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}
-          >
-            {`status: ${sortData[sortIndex].type}`}
-          </text>
-        </>
-      );
-    });
-  }, [isDark, sortIndex]);
-
-  useEffect(() => {
     setSvgComponent(() => {
       return array.map((value, idx) => (
         <React.Fragment key={idx}>
@@ -83,6 +54,7 @@ export const SelectionSort = ({
               alignmentBaseline="middle"
               fontSize="20"
               fill={isDark ? DARK_TEXT_COLOR : LIGHT_TEXT_COLOR}
+              style={{ transform: "scale(1, -1)" }}
             >
               {order === "asc" ? "min" : "max"}
             </text>
@@ -109,14 +81,13 @@ export const SelectionSort = ({
         </React.Fragment>
       ));
     });
-  }, [isDark, sortIndex, coordinates]);
+  }, [isDark, sortIndex, coordinates, windowSIze]);
 
   return (
     <svg
-      width={windowSIze.height * (isWideSize ? 0.8 : 1)}
+      width={windowSIze.width * (isWideSize ? 0.8 : 1)}
       height={windowSIze.height * (isWideSize ? 0.7 : 0.55)}
     >
-      {svgText}
       {svgComponent}
     </svg>
   );

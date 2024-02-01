@@ -24,5 +24,5 @@ export const FOOTER_HEIGHT = 55;
 
 // selection sort
 export const SELECTION_STRIKING_RECT_COLOR = "#ffd900";
-export const SELECTION_MAX_TEXT_Y = 20;
+export const SELECTION_MAX_TEXT_Y = -20;
 

@@ -21,7 +21,7 @@ export const Sort = ({ array, setArray, sortType, order }) => {
   );
   const [sortIndex, setSortIndex] = useState(0);
   const [sortData, setSortData] = useState([]);
-  const windowSIze = useWindowSize();
+  const windowSize = useWindowSize();
   const isWideSize = useIsWideSize();
 
   useEffect(() => {
@@ -36,15 +36,15 @@ export const Sort = ({ array, setArray, sortType, order }) => {
     setCoordinates(
       calcCoordinates(
         array.length,
-        windowSIze.width,
-        windowSIze.height,
+        windowSize.width,
+        windowSize.height,
         isWideSize
       )
     );
     setCoordinateIndex(
       Array.from({ length: array.length }, (_, index) => index)
     );
-  }, [windowSIze.width, windowSIze.height, array, sortData]);
+  }, [windowSize, array, sortData]);
 
   return (
     <Box
@@ -53,7 +53,7 @@ export const Sort = ({ array, setArray, sortType, order }) => {
       flexDirection="column"
     >
       <Box
-        height={windowSIze.height * (isWideSize ? 0.7 : 0.55)}
+        height={windowSize.height * (isWideSize ? 0.7 : 0.55)}
         sx={{ transform: "scale(1, -1)" }}
       >
         {sortData.length === 0 ? (
