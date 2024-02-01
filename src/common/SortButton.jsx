@@ -2,7 +2,7 @@ import { Box, Button } from "@mui/material";
 import { PlayCircle } from "@mui/icons-material/";
 import { getRandArray } from "../feature/getRandArray";
 import { autoMove } from "../feature/autoMove";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { autoModeContext } from "../context/AutoModeContext";
 
 export const SortButton = ({
@@ -14,10 +14,19 @@ export const SortButton = ({
   setSortData,
   setCoordinateIndex,
 }) => {
-  const { autoRunning, setAutoRunning, autoSpeed } = useContext(autoModeContext);
+  const { autoRunning, setAutoRunning, autoSpeed } =
+    useContext(autoModeContext);
+  const [intervalId, setIntervalId] = useState(null);
 
   const handleAuto = () => {
-    autoMove(sortIndex, setSortIndex, sortDataLength, setAutoRunning, autoSpeed);
+    autoMove(
+      sortIndex,
+      setSortIndex,
+      sortDataLength,
+      setAutoRunning,
+      autoSpeed,
+      setIntervalId
+    );
   };
 
   const handleReset = () => {
@@ -27,6 +36,9 @@ export const SortButton = ({
     setCoordinateIndex(
       Array.from({ length: arrayLength }, (_, index) => index)
     );
+    setAutoRunning(false);
+    clearInterval(intervalId);
+    setIntervalId(null);
   };
 
   return (
@@ -54,7 +66,7 @@ export const SortButton = ({
         Next
         <PlayCircle />
       </Button>
-      <Button variant="contained" disabled={autoRunning} onClick={handleReset}>
+      <Button variant="contained" onClick={handleReset}>
         Reset
       </Button>
     </Box>

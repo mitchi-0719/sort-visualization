@@ -3,17 +3,21 @@ export const autoMove = (
   setSortIndex,
   sortDataLength,
   setAutoRunning,
-  autoSpeed
+  autoSpeed,
+  setIntervalId
 ) => {
   let temp = sortIndex;
   setAutoRunning(true);
-  const intervalId = setInterval(() => {
+
+  const id = setInterval(() => {
     setSortIndex((prev) => prev + 1);
     temp++;
 
     if (temp === sortDataLength - 1) {
-      clearInterval(intervalId);
+      clearInterval(id);
       setAutoRunning(false);
     }
   }, autoSpeed);
+
+  setIntervalId(id);
 };
