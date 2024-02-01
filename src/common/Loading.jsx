@@ -1,9 +1,19 @@
-import { Box } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 
 export const Loading = () => {
   return (
-    <Box sx={{ transform: "scale(1, -1)" }}>
-      <h1>Loading...</h1>
+    <Box
+      width="100%"
+      height="100%"
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      gap={2}
+      sx={{ transform: "scale(1, -1)" }}
+    >
+      <CircularProgress />
+      <Typography variant="h4">Loading...</Typography>
     </Box>
   );
 };
